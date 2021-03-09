@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+{% extends 'milk_app/base.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %}
+    Homepage
+
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="jumbotron p-2" style="width: 22rem;">
+    <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+        <div>
+            <h2 class="h2">
+            {% if user.is_authenticated %}
+                howdy {{ user.username }}!
+            {% else %}
+                hey there partner!
+                <p>
+                    <a tabindex="0" class="btn btn-lg btn-info" role="button" data-toggle="popover" data-trigger="focus" title="big ass button lmao" data-content="holy shit this actually a big ass fuckin button bro">big fuck-off button</a>
+                </p>
+
+                
+            {% endif %}
+            </h2>
+        <strong>{{ boldmessage }}</strong>
+        </div>
+    </div>
+</div>
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-6">
+                <div class="card-body">
+                    <h2>Most Liked Categories</h2>
+                    <p class="card-text">
+                    {% if categories %}
+                    <ul class="list-group">
+                    {% for category in categories %}
+                        <li class="list-group-item">
+                        <a href="{% url 'milk_app:show_category' category.slug %}">
+                        {{ category.name }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <strong>There are no categories present.</strong>
+                    {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card mb-6">
+                <div class="card-body">
+                    <h2>Most Viewed Pages</h2>
+                    <p class="card-text">
+                    {% if pages %}
+                    <ul class="list-group">
+                    {% for page in pages %}
+                        <li class="list-group-item">
+                        <a href="{{ page.url }}">{{ page.title }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <strong>There are no pages present.</strong>
+                    {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <img class= "img-fluid" src="{% static "images/rango.jpg" %}" alt="Picture of Rango" />    
+{% endblock %}
+
+
