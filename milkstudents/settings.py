@@ -27,7 +27,7 @@ REGISTRATION_OPEN = True
 # If True, the user will be automatically logged in after registering.
 REGISTRATION_AUTO_LOGIN = True
 # The URL that Django redirects users to after logging in.
-LOGIN_REDIRECT_URL = 'milk_app:index'
+LOGIN_REDIRECT_URL = 'milk_app:home'
 # The page users are directed to if they are not logged in.
 # This was set in a previous chapter. The registration package uses this, too.
 LOGIN_URL = 'auth_login'
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'milk_app',
-    'registration'
+    'registration',
 
 ]
 
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'milkstudents.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

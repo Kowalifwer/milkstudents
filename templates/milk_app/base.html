@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load milk_app_template_tags %}
+
 <html lang="en">
     <head>
     <meta charset="utf-8">
@@ -23,24 +23,28 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark p-0">
-                <a class="navbar-brand p-2" href="{% url 'milk_app:index' %}">MilkStudents</a>
+                <a class="navbar-brand p-2" href="{% url 'milk_app:home' %}">MilkStudents</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:index' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Home</a></li>
+
+                        {% comment %}
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:about' %}">About</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:restricted' %}">Restricted</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:add_category' %}">Add Category</a></li>
+                        
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a></li>
-                        <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li> #}
                         {% endif %}
+                        {% endcomment %}
+
                     </ul>
                 </div>
             </nav>
@@ -50,9 +54,7 @@
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">
-                    {% block sidebar_block %}
-                        {% get_category_list category %}
-                    {% endblock %}
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Juicy boostrap tooltip"> TOOLTIP </button>
                     </div>
                 </nav>
                 
@@ -61,8 +63,8 @@
                     
                     <!-- FOOTER -->
                     <footer>
-                        <p class="float-right"><a href="#">Back to top</a></p>
-                        <p>&copy; 2020 Tango With Django 2 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                        
+                        <p class = "fixed-bottom" style = "left: 250px">&copy; MilkStudents.com &middot; <a href="#">Careers</a> &middot; <a href="#">Contact Us</a></p>
                     </footer>
                 </main>
             </div>
@@ -74,10 +76,18 @@
         <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
+        <!-- Enables the popover buttons everywhere -->
         <script>
             $(function () {
           $('[data-toggle="popover"]').popover()
             })
+        </script>
+        <!-- Enables the tooltips everywhere -->
+        <script>
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
         </script>
     </body>
 </html>
