@@ -31,21 +31,15 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Home</a></li>
-
-                        
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:about' %}">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a></li>
-                        {% comment %}
                         {% if user.is_authenticated %}
-                        <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:restricted' %}">Restricted</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
-                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}">Logout</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a></li>
-                        <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li> #}
+                        <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
                         {% endif %}
-                        {% endcomment %}
+
 
                     </ul>
                 </div>

@@ -25,6 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('milk_app/', include('milk_app.urls')),
-    # The above maps any URLs starting with rango/ to be handled by rango.
+    # The above maps any URLs starting with milk_app/ to be handled by milk_app.
     path('accounts/', include('registration.backends.simple.urls')),    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
