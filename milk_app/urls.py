@@ -10,7 +10,8 @@ urlpatterns = [
 
     
     path('', views.home, name = 'home'),
-    # path('about/', views.about, name = 'about'),
+    path('about/', views.about, name = 'about'),
+    path('support/contact_us/', views.contactPage, name = 'contact'),
     # path('category/<slug:category_name_slug>/' ,
     # views.show_category, name='show_category'),
     # path('add_category/', views.add_category, name='add_category'),

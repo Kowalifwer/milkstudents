@@ -32,8 +32,10 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Home</a></li>
 
-                        {% comment %}
+                        
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a></li>
+                        {% comment %}
                         {% if user.is_authenticated %}
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:restricted' %}">Restricted</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
@@ -54,20 +56,22 @@
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Juicy boostrap tooltip"> TOOLTIP </button>
+                        
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Juicy boostrap tooltip"> Don't hover over this... </button>
                     </div>
                 </nav>
                 
-                <main role="main" class="col-md-9  ml-sm-auto col-lg-10 px-4">		
+                <div role="main" class="col-md-9 ml-sm-auto col-lg-10 px-2">		
                     {% block body_block %}{% endblock %}
                     
                     <!-- FOOTER -->
-                    <footer>
-                        
-                        <p class = "fixed-bottom" style = "left: 250px">&copy; MilkStudents.com &middot; <a href="#">Careers</a> &middot; <a href="#">Contact Us</a></p>
+                    <footer>    
+                        <p> &copy; MilkStudents.com &middot; <a href="#">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}">Contact Us</a></p>
                     </footer>
-                </main>
+                </div>
+                
             </div>
+            
         </div>
         
         <!-- Bootstrap core JavaScript -->
