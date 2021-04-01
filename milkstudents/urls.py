@@ -17,13 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from registration.backends.simple.views import RegistrationView
 from milk_app import views
 from django.urls import reverse
-
-class MyRegistrationView(RegistrationView):
-    def get_success_url(self, user):
-        return reverse('rango:register_profile')
 
 
 
