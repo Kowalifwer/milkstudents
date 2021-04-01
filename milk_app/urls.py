@@ -1,17 +1,22 @@
 from django.urls import path
 from milk_app import views
-app_name = 'milk_app'
 
 
 ##CHANGE IT UP - IMPORTANT TO HAVE REFERENCES FOR URLS.
+app_name = 'milk_app'
+
+
 
 urlpatterns = [
-
-
     
     path('', views.home, name = 'home'),
     path('about/', views.about, name = 'about'),
     path('support/contact_us/', views.contactPage, name = 'contact'),
+    path('goto/', views.goto_url, name='goto'),
+    path('register_profile/', views.register_profile, name='register_profile'),
+    path('listing/<slug:listing_id_slug>', views.show_listing, name="show_listing"),
+    path('add_listing/', views.add_listing, name='add_listing'),
+
     # path('category/<slug:category_name_slug>/' ,
     # views.show_category, name='show_category'),
     # path('add_category/', views.add_category, name='add_category'),
@@ -21,7 +26,7 @@ urlpatterns = [
     
 
     ##if not using registration redux !
-    #path('logout/', views.user_logout, name='logout'),
-    #path('register/', views.register, name='register' ),
-    #path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
+    path('register/', views.register, name='register' ),
+    path('login/', views.user_login, name='login'),
 ]

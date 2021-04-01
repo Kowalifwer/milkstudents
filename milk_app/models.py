@@ -1,3 +1,5 @@
+from collections import namedtuple
+from typing import Optional
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
@@ -33,22 +35,44 @@ from django.contrib.auth.models import User
 
 #     def __str__(self):
 #         return self.title
+class Listing(models.Model):
+
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    name = models.CharField(max_length = 40, primary_key=True)
+    description = models.CharField(max_length= 500)
+    price = models.IntegerField(null=True)
+    address = models.CharField(max_length = 100)
+    rating = models.IntegerField(null=True)
+
+    date = models.DateField(null=True)
+    uniName = models.CharField(max_length= 40)
+
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Listing, self).save(*args, **kwargs)
+
+
+    class Meta:
+        verbose_name_plural = 'Listings'
+
+    def __str__(self):
+        return self.name
+
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     # The additional attributes we wish to include.
-    description = models.TextField(max_length= 150)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    isHost = models.BooleanField()
-    isTenant = models.BooleanField()
-    
+    account = models.CharField(max_length = 3, 
+                                  choices = [(None,""), ("HST","Host"),("TNT","Tenant")],
+                                  help_text= "What kind of account is this?",
+                                  blank=False)
 
-    rating = models.IntegerField(default=0)
-    
     def __str__(self):
-        self.user.isHost = False
-        self.user.isTenant = False
         return self.user.username
         

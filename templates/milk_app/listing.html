@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% extends 'milk_app/base.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %}
+
+    {% if listing %}
+        {{ listing.name }}
+    {% else %}
+        Listing does not exist.
+    {% endif %}
+
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron p-2" style = "width: 22rem;">
+    <div class="container padding-4">
+        <div h1 class="jumbotron-heading">
+            
+        </div>
+        <p style = "font-family: cursive; ">
+            <span style="color: cornflowerblue;">
+            {% if listing %}
+                {{ listing.name }} in {{listing.uniName}}
+
+
+                Address: {{listing.address}}
+                Rating: {{listing.rating}}
+                ETC...
+            {% else %}
+                Listing does not exist.
+            {% endif %}
+            
+            
+            </span>
+ 
+        </p>
+    </div>
+
+</div>
+{% endblock %}

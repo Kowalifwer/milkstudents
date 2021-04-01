@@ -23,11 +23,12 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # REGISTRATION REDUX EXTRAS
 # If True, users can register.
-REGISTRATION_OPEN = True
-# If True, the user will be automatically logged in after registering.
-REGISTRATION_AUTO_LOGIN = True
-# The URL that Django redirects users to after logging in.
-LOGIN_REDIRECT_URL = 'milk_app:home'
+# REGISTRATION_OPEN = True
+# # If True, the user will be automatically logged in after registering.
+# REGISTRATION_AUTO_LOGIN = True
+# # The URL that Django redirects users to after logging in.
+# LOGIN_REDIRECT_URL = 'milk_app:home'
+LOGIN_URL = 'milk_app:login'
 # The page users are directed to if they are not logged in.
 # This was set in a previous chapter. The registration package uses this, too.
 LOGIN_URL = 'auth_login'
@@ -52,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'milk_app',
-    'registration',
+    #'registration',
 
 ]
 
@@ -129,7 +130,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

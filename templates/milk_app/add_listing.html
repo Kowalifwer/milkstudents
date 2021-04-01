@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+{% extends 'milk_app/base.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %}
+
+    Add a Listing
+
+{% endblock %}
+
+{% block body_block %}
+
+<div class="jumbotron p-2" style = "width: 22rem;">
+    <div class="container padding-4">
+        <form id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <input type="submit" name="submit" value="Create Listing" />
+        </form>
+
+
+    </div>
+
+</div>
+{% endblock %}
