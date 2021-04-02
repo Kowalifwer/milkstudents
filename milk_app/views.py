@@ -211,7 +211,13 @@ def my_listings(request):
 
     return render(request, 'milk_app/my_listings.html', context_dict)
 
-
+@login_required
+def user_profile(request):
+    context_dict = {}
+    
+    
+    response = render(request, 'milk_app/profile.html',context = context_dict)
+    return response
 
 
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends 'milk_app/base.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %}
+    user.username 's  profile
+
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron p-2" style = "width: 22rem;">
+    <div class="container padding-4">
+        <div h1 class="jumbotron-heading">
+            Greetings  {{user.username}}
+        </div>
+        <div>
+            Your role is: {{user.userprofile.account}}
+        </div>
+        <div> <a href = "#">Change your password</a></div>
+        <div> <a href = "#">Add/update profile picture</a></div> 
+
+        <p style = "font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "class="font-weight-bold">About page set up within the views</p>  
+        <p style = "font-family: cursive; ">
+            <span style="color: cornflowerblue;">Visits: </span>
+ 
+        </p>
+    </div>
+
+</div>
+
+
+
+<!-- <img src="{% static "images/rango.jpg" %}" width="500" height =500 alt="Picture of Rango" /> 
+<img src="{{MEDIA_URL}}cat.jpg" alt="Picture of a Cat." width="500" height =500 /> -->
+
+
+{% endblock %}
+
+
