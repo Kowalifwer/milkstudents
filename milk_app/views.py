@@ -1,4 +1,4 @@
-from milk_app.models import Listing
+from milk_app.models import Listing, UserProfile
 from django.shortcuts import render
 from django.http import HttpResponse
 # from rango.models import Category
@@ -36,9 +36,18 @@ def contactPage(request):
     context_dict = {}
     response = render(request, 'milk_app/contact_us.html',context = context_dict)
     return response
+def careers(request):
+    context_dict = {}
+    response = render(request, 'milk_app/careers.html',context = context_dict)
+    return response
+def faq (request):
+    context_dict = {}
+    response = render(request, 'milk_app/FAQ.html',context = context_dict)
+    return response
 
 def register(request):
     registered = False
+
 
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -48,14 +57,13 @@ def register(request):
         if user_form.is_valid() and user_form.cleaned_data['password'] == user_form.cleaned_data['password_confirm'] and profile_form.is_valid():
             # print(role)
             
-            if role == "TNT":
+            if role == "Tenant":
                 print("TENANT TEST")
                 pass
 
-            elif role == "HST":
+            elif role == "Host":
                 print("HOST TEST")
                 pass
-            
             
             user = user_form.save()
             user.set_password(user.password)
@@ -69,6 +77,7 @@ def register(request):
             
             profile.save()
             registered = True
+            login(request,user)
         elif user_form.cleaned_data['password'] != user_form.cleaned_data['password_confirm']:
              user_form.add_error('password_confirm', 'The passwords do not match')
         else:
@@ -89,7 +98,9 @@ def user_login(request):
 
         if user:
             if user.is_active:
+                
                 login(request, user)
+
                 return redirect(reverse('milk_app:home'))
             else:
                 return HttpResponse("Your MilkStudents account is disabled.")
@@ -97,35 +108,73 @@ def user_login(request):
             print(f"Invalid login details: {username}, {password}")
             return HttpResponse("Invalid login details supplied.")
     else:
+        
         return render(request, 'milk_app/login.html')
 
 def show_listing(request, listing_id_slug):
     context_dict = {}
+    context_dict['current_user'] = "anon" #anon by default
 
     try:
         listing = Listing.objects.get(slug = listing_id_slug)
+        owner = listing.user #pass owner data into context dict
 
         context_dict['listing'] = listing
+        context_dict['owner_info'] = owner
 
     except Listing.DoesNotExist:
         context_dict['listing'] = None
-        
+   
+    if request.user.is_authenticated:
+        context_dict['current_user'] = request.user.userprofile.account
+
     return render(request, 'milk_app/listing.html', context = context_dict)
+
+
 
 @login_required
 def add_listing(request):
     form = ListingForm()
 
+    # Listing.objects.filter()
+    # request.POST.get('')
+
     if request.method == 'POST':
         form = ListingForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            
+            update = form.save(commit=False)
+            update.user = request.user.userprofile
+            update.save() #final save. we added primary key.
+
             return redirect(reverse('milk_app:home'))
         else:
             print(form.errors)
 
     return render(request, 'milk_app/add_listing.html', {'form': form})
+
+def browse_listings(request):
+    context_dict = {}
+    listings = Listing.objects.all()
+    context_dict['listings'] =listings
+
+    return render(request, 'milk_app/browse_listings.html', context_dict)
+
+@login_required
+def my_listings(request):
+    #request.user.userprofile
+
+    user_p = request.user.userprofile
+
+    context_dict = {}
+    my_listings = Listing.objects.filter(user = user_p)
+
+    context_dict['my_listings'] = my_listings
+
+
+
+    return render(request, 'milk_app/my_listings.html', context_dict)
 
 
 def goto_url(request):

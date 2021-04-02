@@ -59,4 +59,5 @@ class ListingForm(forms.ModelForm):
 
     class Meta:
         model = Listing
-        fields = ('name','description','price','address',)
+        fields = ('name','description','address','uniName')
+        exclude = ('user', 'rating', 'date', 'price')

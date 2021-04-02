@@ -35,11 +35,26 @@ from django.contrib.auth.models import User
 
 #     def __str__(self):
 #         return self.title
+
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    # The additional attributes we wish to include.
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+    account = models.CharField(   max_length = 6, 
+                                  choices = [(None,""), ("Host","Host"),("Tenant","Tenant")],
+                                  help_text= "What kind of account is this?",
+                                  blank=False)
+    def __str__(self):
+        return self.user.username
+
+
 class Listing(models.Model):
 
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    name = models.CharField(max_length = 40, primary_key=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
+    
+    name = models.CharField(max_length = 40, primary_key= True)
     description = models.CharField(max_length= 500)
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
@@ -62,17 +77,3 @@ class Listing(models.Model):
         return self.name
 
 
-class UserProfile(models.Model):
-    # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
-    # The additional attributes we wish to include.
-    picture = models.ImageField(upload_to='profile_images', blank=True)
-    account = models.CharField(max_length = 3, 
-                                  choices = [(None,""), ("HST","Host"),("TNT","Tenant")],
-                                  help_text= "What kind of account is this?",
-                                  blank=False)
-
-    def __str__(self):
-        return self.user.username
-        

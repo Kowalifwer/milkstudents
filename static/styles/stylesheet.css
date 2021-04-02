@@ -19,8 +19,6 @@ header,
     height: 100%;
 }
 
-
-
 .navbar-nav   {
     position: relative;
     background-color: #333;
@@ -34,4 +32,10 @@ header,
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+}
+
+body {
+    background-color: red !important;
+
+
 }

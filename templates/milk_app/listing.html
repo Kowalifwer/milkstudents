@@ -26,9 +26,16 @@
                 {{ listing.name }} in {{listing.uniName}}
 
 
-                Address: {{listing.address}}
-                Rating: {{listing.rating}}
-                ETC...
+                <p>Address: {{listing.address}}</p>
+                <p>Rating: {{listing.rating}}</p>
+                <p>Owner: {{owner_info.user.username}}</p>
+                
+                <!-- How listing should look for Host -->
+                
+                {% if current_user == 'Tenant' %} 
+                    <a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="focus" title="Rent Listing" data-content="Rent Listing">Rent Listing</a>
+                {% endif %}
+
             {% else %}
                 Listing does not exist.
             {% endif %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'milk_app/base.html' %}
+
+{% load staticfiles %} 
+
+
+{% block title_block %}
+    Browse Listings
+    
+
+{% endblock %}
+
+{% block body_block %}
+<br><br>    
+    <section >
+        <div>
+            
+            {% if listings %}
+                
+                {% for l in listings  %}
+                    <li><strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a></strong></li>
+                {% endfor %}
+                 
+            {% else %}       
+                <p> NO LISTINGS AVAILABLE LMAO</p>
+
+            {% endif %}
+                
+
+            
+            
+            
+        </div>
+
+        
+    </section>
+    
+{% endblock %}
+
+
+
