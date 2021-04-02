@@ -190,13 +190,13 @@ def my_listings(request):
     #request.user.userprofile
 
     user_p = request.user.userprofile
+    
 
     context_dict = {}
     my_listings = Listing.objects.filter(user = user_p)
 
     context_dict['my_listings'] = my_listings
-
-
+    context_dict['profile'] = user_p
 
     return render(request, 'milk_app/my_listings.html', context_dict)
 
