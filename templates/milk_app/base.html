@@ -1,8 +1,15 @@
-<!DOCTYPE html>
 {% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
 
 <html lang="en">
     <head>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -15,11 +22,7 @@
         Milk - {% block title_block %}Milk Students{% endblock %}
     </title>
     
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
     </head>
     
     <body>
@@ -44,8 +47,8 @@
 
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:logout' %}">Log out</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Change Password</a></li>
-                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Change Password</a></li>                        
+                            
                             <!-- Only hosts can add listings -->
                             {% if user.userprofile.account == "Host" %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:add_listing' %}">Add a listing</a></li>
@@ -83,10 +86,11 @@
                     {% block body_block %}{% endblock %}
 
                     <!-- FOOTER -->
+                    
                     <footer>
-                        <p> &copy; MilkStudents.com &middot; <a href="#">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}">Contact Us</a></p>
-                        <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}">Contact Us &middot;</a> <a href="{% url 'milk_app:FAQ' %}">FAQ</a> {% if user.is_authenticated %}&middot; Logged in as: {{user.username}} &middot; Role: {{user.userprofile.account}}{%endif%} </p>
+                        <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}" class="footer-href">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}" class="footer-href">Contact Us &middot;</a> <a href="{% url 'milk_app:FAQ' %}" class="footer-href" >FAQ</a> {% if user.is_authenticated %}&middot; LOGGED USER: {{user.username}} &middot; ROLE: {{user.userprofile.account}}{%endif%} </p>
                     </footer>
+
                 </div>
             </div>
         </div>
