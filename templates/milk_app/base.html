@@ -8,9 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'styles/stylesheet.css' %}"> -->
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/stylesheet.css' %}">
+
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <title>
         Milk - {% block title_block %}Milk Students{% endblock %}
@@ -45,14 +44,12 @@
 
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:logout' %}">Log out</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:profile' %}">View Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Change Password</a></li>
                         
                             <!-- Only hosts can add listings -->
                             {% if user.userprofile.account == "Host" %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:add_listing' %}">Add a listing</a></li>
                             {% endif %}
-                            
-                        
 
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:my_listings' %}">Browse My Listings</a></li>
                         {% else %}
@@ -69,24 +66,17 @@
 
         </header>
 
-        <!--/ Mask -->
-        <div id="intro" class="view hm-black-strong">
 
-            <div class="full-bg-img">
-
-            </div>
-
-        </div>
-        <!--/ Mask -->
 
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-1 d-none d-md-block bg-light sidebar">
-                    <div class="sidebar-sticky">
 
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Juicy boostrap tooltip"> Don't hover over this... </button>
-                    </div>
-                </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+
+        <div class="container-fluid">
+            <div class="row">
 
                 <div role="main" class="col-md-9 ml-sm-auto col-lg-10 px-2">
 
@@ -94,6 +84,7 @@
 
                     <!-- FOOTER -->
                     <footer>
+                        <p> &copy; MilkStudents.com &middot; <a href="#">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}">Contact Us</a></p>
                         <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}">Contact Us &middot;</a> <a href="{% url 'milk_app:FAQ' %}">FAQ</a> {% if user.is_authenticated %}&middot; Logged in as: {{user.username}} &middot; Role: {{user.userprofile.account}}{%endif%} </p>
                     </footer>
                 </div>

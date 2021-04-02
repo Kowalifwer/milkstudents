@@ -1,24 +1,5 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
-
-html,
-body,
-header,
-#intro  {
-    height: 100%;
-}
-
-#intro  {
-    /* does not want to take the image, needs a fix */
-    background: url("/static/images/background-image.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-}
-
 .navbar-nav   {
     position: relative;
     background-color: #333;
@@ -34,8 +15,17 @@ header,
   font-size: 17px;
 }
 
+header  {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: red !important;
-
-
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background: url("/static/images/background-image.jpg") no-repeat, no-repeat;
+    width: 100%;
+    height: 100%;
 }
