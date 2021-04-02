@@ -46,7 +46,14 @@
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:logout' %}">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Change Password</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:add_listing' %}">Add a listing</a></li>
+                        
+                            <!-- Only hosts can add listings -->
+                            {% if user.userprofile.account == "Host" %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:add_listing' %}">Add a listing</a></li>
+                            {% endif %}
+                            
+                        
+
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:my_listings' %}">Browse My Listings</a></li>
                         {% else %}
 

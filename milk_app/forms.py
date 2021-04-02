@@ -54,10 +54,13 @@ class ListingForm(forms.ModelForm):
     rating = forms.IntegerField(widget=forms.HiddenInput(), required = False)
     date = forms.DateField(widget=forms.HiddenInput(), initial = datetime.date.today())
     uniName = forms.CharField(max_length= 40, initial = "University of Glasgow", help_text="name of uni")
-
+    
+    picture = forms.ImageField(required = False, help_text = "Image of Property")
+    
+    
     slug = forms.SlugField(widget=forms.HiddenInput(), required = False)
 
     class Meta:
         model = Listing
-        fields = ('name','description','address','uniName')
+        fields = ('name','description','address','uniName','picture')
         exclude = ('user', 'rating', 'date', 'price')

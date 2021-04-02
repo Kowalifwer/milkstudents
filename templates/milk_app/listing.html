@@ -25,15 +25,27 @@
             {% if listing %}
                 {{ listing.name }} in {{listing.uniName}}
 
-
+                <!-- What everyone sees -->
                 <p>Address: {{listing.address}}</p>
                 <p>Rating: {{listing.rating}}</p>
                 <p>Owner: {{owner_info.user.username}}</p>
                 
-                <!-- How listing should look for Host -->
+                <!-- Logic behind How listing should look for Host/tenant -->
                 
-                {% if current_user == 'Tenant' %} 
-                    <a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="focus" title="Rent Listing" data-content="Rent Listing">Rent Listing</a>
+                {% if current_user.account == 'Tenant' and owner_info.user.username != current_user.user.username %} 
+
+                <form action = "{% url 'milk_app:purchase_listing' listing.slug %}" method = 'POST'> 
+                    {% csrf_token %}
+                    <button type = 'submit'> Rent Listing</button>
+                </form>
+
+                {% elif current_user.account == 'Host' %}
+                <a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="focus" title="Update Listing" data-content="Update Listing">Update Listing</a>
+                <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
+                    {% csrf_token %}
+                    <button type = 'submit'> Remove Listing</button>
+                </form>
+               
                 {% endif %}
 
             {% else %}

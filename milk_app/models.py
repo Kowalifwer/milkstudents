@@ -59,7 +59,7 @@ class Listing(models.Model):
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
     rating = models.IntegerField(null=True)
-
+    picture = models.ImageField(upload_to = 'listing_images', blank = True)
     date = models.DateField(null=True)
     uniName = models.CharField(max_length= 40)
 

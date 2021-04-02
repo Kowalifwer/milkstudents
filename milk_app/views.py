@@ -113,7 +113,7 @@ def user_login(request):
 
 def show_listing(request, listing_id_slug):
     context_dict = {}
-    context_dict['current_user'] = "anon" #anon by default
+    #context_dict['current_user'] = "anon" #anon by default
 
     try:
         listing = Listing.objects.get(slug = listing_id_slug)
@@ -125,10 +125,32 @@ def show_listing(request, listing_id_slug):
     except Listing.DoesNotExist:
         context_dict['listing'] = None
    
-    if request.user.is_authenticated:
-        context_dict['current_user'] = request.user.userprofile.account
+    if request.user.is_authenticated: #if current user is authenticated - send in their role to context dict.
+        context_dict['current_user'] = request.user.userprofile
 
     return render(request, 'milk_app/listing.html', context = context_dict)
+
+
+
+@login_required
+def purchase_listing(request, listing_id_slug): #know for a fact its tenant
+    
+    buyer = request.user.userprofile
+
+    listing = Listing.objects.get(slug = listing_id_slug)
+    #update the owner of the listing 
+    listing.user = buyer
+    listing.save()
+
+    return render(request, 'milk_app/home.html')
+
+@login_required
+def remove_listing(request, listing_id_slug): #know for a fact its tenant
+    #Delete the object from db completely
+    Listing.objects.filter(slug = listing_id_slug).delete()
+
+    return render(request, 'milk_app/home.html')
+
 
 
 
@@ -156,7 +178,9 @@ def add_listing(request):
 
 def browse_listings(request):
     context_dict = {}
-    listings = Listing.objects.all()
+
+    ##Only Tenants listings should be visible
+    listings = Listing.objects.filter(user__account = "Host")
     context_dict['listings'] =listings
 
     return render(request, 'milk_app/browse_listings.html', context_dict)
