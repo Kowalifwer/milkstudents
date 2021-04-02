@@ -14,24 +14,42 @@
 <br><br>    
     <section >
 
-        All Currently Available Listings
         <div>
             
             {% if listings %}
                 
+                {% if not searched %}
+                    <p>Popular listings:</p>
+
+                {% else %}
+                    <p>Listings relevant to your search: '{{search}}'</p>
+                {% endif %}
+                    
+                
                 {% for l in listings  %}
-                    <li><strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}
+                    <li><strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a> - {{l.uniName}}
                     <!-- ADD CODE HERE TO SHOW PICTURE MAYBE {% if l.picture %}
                         l.picture
                     {% endif %} -->
-                         </a></strong></li>
+
+                        
+                        
+                         </strong></li>
                 {% endfor %}
-                 
+                
+       
             {% else %}       
                 <p> NO LISTINGS AVAILABLE LMAO</p>
 
             {% endif %}
-                
+            
+            Would you like to search for a listing near a specific university? ?
+            <form action = "{% url 'milk_app:browse_listings'%}" method = "post">
+                {% csrf_token %}
+                <label for="search">University name: </label>
+                <input id="search" type="text" name="search" value="{{ search }}">
+                <input type="submit" value="OK">
+            </form>
 
             
             

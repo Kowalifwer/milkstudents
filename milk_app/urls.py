@@ -12,7 +12,7 @@ urlpatterns = [
     path('', views.home, name = 'home'),
     path('about/', views.about, name = 'about'),
     path('support/contact_us/', views.contactPage, name = 'contact'),
-    path('goto/', views.goto_url, name='goto'),
+    #path('goto/', views.goto_url, name='goto'),
     #path('register_profile/', views.register_profile, name='register_profile'),
     path('listing/<slug:listing_id_slug>', views.show_listing, name="show_listing"),
     path('add_listing/', views.add_listing, name='add_listing'),
@@ -22,6 +22,7 @@ urlpatterns = [
     path('careers/', views.careers, name = "careers"),
     path('purchase/<slug:listing_id_slug>', views.purchase_listing, name = "purchase_listing"),
     path('remove/<slug:listing_id_slug>', views.remove_listing, name = "remove_listing"),
+    
     # path('category/<slug:category_name_slug>/' ,
     # views.show_category, name='show_category'),
     # path('add_category/', views.add_category, name='add_category'),

@@ -178,10 +178,21 @@ def add_listing(request):
 
 def browse_listings(request):
     context_dict = {}
-
-    ##Only Tenants listings should be visible
     listings = Listing.objects.filter(user__account = "Host")
+
+    if request.method == 'POST': #if user searching for smthn
+        try:
+            search = request.POST.get('search')
+            listings = listings.filter(uniName__icontains = search)
+            context_dict['search'] = search
+            context_dict['searched'] = True   
+        except:
+            context_dict['searched'] = False
+        
+    ##Only Tenants listings should be visible
+    
     context_dict['listings'] =listings
+    
 
     return render(request, 'milk_app/browse_listings.html', context_dict)
 
@@ -201,18 +212,6 @@ def my_listings(request):
     return render(request, 'milk_app/my_listings.html', context_dict)
 
 
-def goto_url(request):
-    if request.method == 'GET':
-        page_id = request.GET.get('page_id')
-        try:
-            selected_page = Page.objects.get(id=page_id)
-        except Page.DoesNotExist:
-            return redirect(reverse('milk_app:home'))
-        selected_page.views = selected_page.views + 1
-        selected_page.save()
-        
-        return redirect(selected_page.url)
-    return redirect(reverse('milk_app:home'))
 
 
 
