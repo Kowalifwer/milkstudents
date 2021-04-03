@@ -31,7 +31,7 @@
                         <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a> - {{l.uniName}}
                         
                         {% if l.picture %}
-                            <img src = "/media/{{l.picture}}"> Click </img>
+                            <img src = "/media/{{l.picture}}" height = "10%" width= "10%"> Click </img>
                         {% endif %}
                             
        
@@ -51,12 +51,8 @@
                 <input id="search" type="text" name="search" value="{{ search }}">
                 <input type="submit" value="OK">
             </form>
-
-            
-            
             
         </div>
-
         
     </section>
     

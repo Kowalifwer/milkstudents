@@ -3,6 +3,8 @@ from typing import Optional
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+import uuid
+import os
 
 # Create your models here.
 # class Category(models.Model):
@@ -50,6 +52,13 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+
+def generate_filename_hash(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('listing_images', filename)
+
+
 class Listing(models.Model):
 
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
@@ -60,7 +69,7 @@ class Listing(models.Model):
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
     rating = models.IntegerField(null=True)
-    picture = models.ImageField(upload_to = 'listing_images', blank = False)
+    picture = models.ImageField(upload_to = generate_filename_hash, blank = False)
     date = models.DateField(null=True)
     uniName = models.CharField(max_length= 40)
 

@@ -162,6 +162,7 @@ def add_listing(request):
             listing = form.save(commit=False)
             listing.user = request.user.userprofile
             listing.listing_id = uuid().hex
+            listing.picture = request.FILES['picture']
 
             listing.save() #final save. we generated primary key.
 
