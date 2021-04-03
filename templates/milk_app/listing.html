@@ -29,6 +29,11 @@
                 <p>Address: {{listing.address}}</p>
                 <p>Rating: {{listing.rating}}</p>
                 <p>Owner: {{owner_info.user.username}}</p>
+
+                {% if listing.picture %}
+                    <img src = "/media/{{listing.picture}}" height = "10%" width= "10%"></img>
+                {% endif %}
+                
                 
                 <!-- Logic behind How listing should look for Host/tenant -->
                 

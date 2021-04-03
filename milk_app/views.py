@@ -1,7 +1,7 @@
 from milk_app.models import Listing, UserProfile
 from django.shortcuts import render
 from django.http import HttpResponse
-from milk_app.forms import ListingForm, UserForm, UserProfileForm
+from milk_app.forms import ListingForm, UserForm, UserProfileForm, UserProfileUpdateForm, UserUpdateForm
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -170,7 +170,7 @@ def add_listing(request):
         else:
             print(form.errors)
 
-    return render(request, 'milk_app/add_listing.html', {'form': form})
+    return render(request, 'milk_app/add_listing.html', {'listing_form': form})
 
 def browse_listings(request):
     context_dict = {}
@@ -210,8 +210,27 @@ def my_listings(request):
 @login_required
 def user_profile(request):
     context_dict = {}
+
+    p_form = UserProfileUpdateForm()
+    u_form = UserUpdateForm()
+
+    if request.method == 'POST':
+        p_form = UserProfileUpdateForm(request.POST,request.FILES, instance = request.user.userprofile)
+        u_form = UserUpdateForm(request.POST, instance = request.user)
+
+        if p_form.is_valid() and u_form.is_valid():
+            u_form.save(commit = True)
+            p_form.save(commit = True)
+            return redirect(reverse('milk_app:profile'))
+        
+        else:
+            p_form = UserProfileUpdateForm(instance=request.user)
+            u_form = UserUpdateForm(instance=request.user.userprofile)
     
-    
+    context_dict['p_form'] = p_form
+    context_dict['u_form'] = u_form
+
+
     response = render(request, 'milk_app/profile.html',context = context_dict)
     return response
 

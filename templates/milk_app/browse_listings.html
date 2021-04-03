@@ -18,7 +18,6 @@
             
             {% if not searched %}
                     <p>Popular listings:</p>
-
                 {% else %}
                     <p>Listings relevant to your search: '{{search}}'</p>
             {% endif %}
@@ -28,11 +27,11 @@
                 
                 {% for l in listings  %}
                     <li>
-                        <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a> - {{l.uniName}}
+                        <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }} - </a> {{l.university}} 
                         
-                        {% if l.picture %}
+                        <!-- {% if l.picture %}
                             <img src = "/media/{{l.picture}}" height = "10%" width= "10%"> Click </img>
-                        {% endif %}
+                        {% endif %} -->
                             
        
                     </strong></li>

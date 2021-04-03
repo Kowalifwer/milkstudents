@@ -2,7 +2,7 @@
 
 {% extends 'milk_app/base.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block title_block %}
 
@@ -14,13 +14,17 @@
 
 <div class="jumbotron p-2" style = "width: 22rem;">
     <div class="container padding-4">
-        <form id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">
+        <form  id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">
             
             {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
+
+
+            {{ listing_form|crispy }}
+
+            <!-- {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
-
+ -->
             <!-- <p>{{form.name}} - Name your listing:</p>
             <p>{{form.address}} - Enter Address</p>
             <p>{{form.description}} - Description</p>
@@ -30,15 +34,15 @@
                 {{form.picture.label}}
                 {{form.picture}}
             </p> -->
-
             
-            {% for field in form.visible_fields %}
+            
+            <!-- {% for field in form.visible_fields %}
                 {{ field.errors }}
                 {{ field.help_text }}
                 <p>{{ field }}</p>
-            {% endfor %}
+            {% endfor %} -->
 
-            <input type="submit" name="submit" value="Create Listing" />
+            <button class = "btn btn-primary" type="submit" name="submit"> Create listing </button>
         </form>
 
 

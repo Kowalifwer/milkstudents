@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.fields import ImageField
 from milk_app.models import Listing, UserProfile
 from django.contrib.auth.models import User
 import datetime
@@ -45,25 +46,40 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('account',)  
-        exclude = ('picture',)      
+        exclude = ('picture',)
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email',)
+
+
+class UserProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ('picture',)
+
+   
 
 class ListingForm(forms.ModelForm):
 
     
-    name = forms.CharField(max_length = 40, help_text= "Name your listing")
-    description = forms.CharField(max_length= 500, help_text = "Describe your listing")
-    price = forms.IntegerField(widget=forms.HiddenInput(),required = False)
-    address = forms.CharField(max_length = 100, help_text = "Address")
-    rating = forms.IntegerField(widget=forms.HiddenInput(), required = False)
-    date = forms.DateField(widget=forms.HiddenInput(), initial = datetime.date.today())
-    uniName = forms.CharField(max_length= 40, initial = "University of Glasgow", help_text="name of uni")
+    name = forms.CharField(max_length = 40, widget = forms.TextInput(attrs = {'placeholder' : 'Name your listing'}), label= "Listing name")
+    description = forms.CharField(max_length= 500, widget = forms.TextInput(attrs = {'placeholder' : 'Describe your listing'}), label = "Description")
+    #price = forms.IntegerField(widget=forms.HiddenInput(),required = False)
+    address = forms.CharField(max_length = 100, widget = forms.TextInput(attrs = {'placeholder' : 'Apparment, studio, or floor'}))
+    #rating = forms.IntegerField(widget=forms.HiddenInput(), required = False)
+    #date = forms.DateField(widget=forms.HiddenInput(), initial = datetime.date.today())
+    university = forms.CharField(max_length= 40, widget = forms.TextInput(attrs = {'placeholder' : 'Which Univeristy is the lisiting relevant to'}), label = "Univeristy name")
     
-    picture = forms.ImageField(label = 'Select a file', help_text = "Image of Property")
+    picture = forms.ImageField(label = 'Select a file')
     
     
     slug = forms.SlugField(widget=forms.HiddenInput(), required = False)
 
     class Meta:
         model = Listing
-        fields = ('name','description','address','uniName','picture')
-        exclude = ('user', 'rating', 'date', 'price', 'listing_id')
+        fields = ('name','description','address','university','picture')
+        exclude = ('user', 'rating', 'date', 'price', 'listing_id', 'slug')

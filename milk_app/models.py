@@ -38,12 +38,17 @@ import os
 #     def __str__(self):
 #         return self.title
 
+def generate_filename_userpic(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('profile_images', filename)
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     # The additional attributes we wish to include.
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    picture = models.ImageField(upload_to=generate_filename_userpic, blank=True)
     account = models.CharField(   max_length = 6, 
                                   choices = [(None,""), ("Host","Host"),("Tenant","Tenant")],
                                   help_text= "What kind of account is this?",
@@ -51,9 +56,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-
-
-def generate_filename_hash(instance, filename):
+def generate_filename_listing(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join('listing_images', filename)
@@ -69,9 +72,9 @@ class Listing(models.Model):
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
     rating = models.IntegerField(null=True)
-    picture = models.ImageField(upload_to = generate_filename_hash, blank = False)
+    picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
     date = models.DateField(null=True)
-    uniName = models.CharField(max_length= 40)
+    university = models.CharField(max_length= 40)
 
     slug = models.SlugField(unique=True)
 
