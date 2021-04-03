@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 import uuid
 import os
-
+import datetime
 # Create your models here.
 # class Category(models.Model):
 #     NAME_MAX_LENGTH = 128
@@ -74,7 +74,7 @@ class Listing(models.Model):
     address = models.CharField(max_length = 100)
     rating = models.IntegerField(null=True)
     picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
-    date = models.DateField(null=True)
+    date = models.DateField(default = datetime.datetime.now(), editable = True)
     university = models.CharField(max_length= 40)
 
     slug = models.SlugField(unique=True)

@@ -36,28 +36,38 @@
                 
                 
                 <!-- Logic behind How listing should look for Host/tenant -->
-                
+                <!-- If you are a Tenant and it is not your listing -->
                 {% if current_user.account == 'Tenant' and owner_info.user.username != current_user.user.username %} 
-
+                <p>Date added: {{listing.date}}</p>
                 <form action = "{% url 'milk_app:purchase_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
                     <button type = 'submit'> Rent Listing</button>
                 </form>
+                <!-- If you are tenant and it is your listing -->
+                {% elif current_user.account == 'Tenant' and owner_info.user.username == current_user.user.username %}
+                <p>Date purchased: {{listing.date}}</p>
 
-
+                <!-- If you are a Host view -->
                 {% elif current_user.account == 'Host' and owner_info.user.username == current_user.user.username %}
+                <p>Date added: {{listing.date}}</p>
+
                 <a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="focus" title="Update Listing" data-content="Update Listing">Update Listing</a>
                 
                 <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
                     <button type = 'submit'> Remove Listing</button>
                 </form>
-               
+                
+                <!-- If not authenticated -->
+                {% else %}
+                <p>Date added: {{listing.date}}</p>
+
                 {% endif %}
 
             {% else %}
                 Listing does not exist.
-            {% endif %}
+            
+                {% endif %}
             
             
             </span>
