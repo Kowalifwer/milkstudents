@@ -6,16 +6,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     overflow: hidden;
 }
 
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-
-
 .footer-href {
     float: right;
     margin-left: 1%;
@@ -23,13 +13,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 footer {
     float: right;
-    height: 35px;
-    margin: 0px 50px 0px 0px;
+    position: fixed;
+    width: 100%;
+    height: 45px;
+    margin: 110px 50px 0px 0px;
     color: #000;
     text-align: left;
     padding: 10px 30px;
-    width: 100%;
     font-size: 20px;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+img    {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 header  {
@@ -37,13 +40,15 @@ header  {
     padding: 0;
 }
 
-body {
+body{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: contain;
     background: url("/static/images/background-image.jpg") no-repeat, no-repeat;
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    height: auto;
 }
 

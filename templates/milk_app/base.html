@@ -16,8 +16,6 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/stylesheet.css' %}">
-
-    <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <title>
         Milk - {% block title_block %}Milk Students{% endblock %}
     </title>
@@ -87,7 +85,7 @@
 
                     <!-- FOOTER -->
                     
-                    <footer>
+                    <footer class="fixed-bottom">
                         <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}" class="footer-href">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}" class="footer-href">Contact Us &middot;</a> <a href="{% url 'milk_app:FAQ' %}" class="footer-href" >FAQ</a> {% if user.is_authenticated %}&middot; LOGGED USER: {{user.username}} &middot; ROLE: {{user.userprofile.account}}{%endif%} </p>
                     </footer>
 
