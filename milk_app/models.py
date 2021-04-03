@@ -54,7 +54,8 @@ class Listing(models.Model):
 
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
     
-    name = models.CharField(max_length = 40, primary_key= True)
+    listing_id = models.CharField(max_length = 32, primary_key= True)
+    name = models.CharField(max_length = 40)
     description = models.CharField(max_length= 500)
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
@@ -66,7 +67,7 @@ class Listing(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.listing_id)
         super(Listing, self).save(*args, **kwargs)
 
 

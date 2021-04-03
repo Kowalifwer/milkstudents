@@ -1,19 +1,17 @@
 from milk_app.models import Listing, UserProfile
 from django.shortcuts import render
 from django.http import HttpResponse
-# from rango.models import Category
-# from rango.models import Page
 from milk_app.forms import ListingForm, UserForm, UserProfileForm
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from uuid import uuid4 as uuid
+
 # Create your views here.
 # Homepage for starters - nothing interesting
 def home(request):
-
-    
 
     context_dict = {}
     # context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
@@ -47,23 +45,22 @@ def faq (request):
 
 def register(request):
     registered = False
-
+    domains = [".edu",".ac.uk",".ac.nz"] 
 
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST)
-        role = request.POST.get('account')
+        
+        role = profile_form['account'].value()
+        email = user_form['email'].value()
+           
 
-        if user_form.is_valid() and user_form.cleaned_data['password'] == user_form.cleaned_data['password_confirm'] and profile_form.is_valid():
-            # print(role)
-            
-            if role == "Tenant":
-                print("TENANT TEST")
-                pass
 
-            elif role == "Host":
-                print("HOST TEST")
-                pass
+        ##CHECK FOR UNI EMAIL DOMAIN
+        if role == "Tenant" and not any(x in email for x in domains):                
+            user_form.add_error('email', 'Please enter a valid University email address:')
+
+        elif user_form.is_valid() and user_form.cleaned_data['password'] == user_form.cleaned_data['password_confirm'] and profile_form.is_valid():
             
             user = user_form.save()
             user.set_password(user.password)
@@ -168,7 +165,8 @@ def add_listing(request):
             
             update = form.save(commit=False)
             update.user = request.user.userprofile
-            update.save() #final save. we added primary key.
+            update.listing_id = uuid().hex
+            update.save() #final save. we generated primary key.
 
             return redirect(reverse('milk_app:home'))
         else:

@@ -47,6 +47,8 @@ class UserProfileForm(forms.ModelForm):
         fields = ('picture','account' )        
 
 class ListingForm(forms.ModelForm):
+
+    
     name = forms.CharField(max_length = 40, help_text= "Name your listing")
     description = forms.CharField(max_length= 500, help_text = "Describe your listing")
     price = forms.IntegerField(widget=forms.HiddenInput(),required = False)
@@ -63,4 +65,4 @@ class ListingForm(forms.ModelForm):
     class Meta:
         model = Listing
         fields = ('name','description','address','uniName','picture')
-        exclude = ('user', 'rating', 'date', 'price')
+        exclude = ('user', 'rating', 'date', 'price', 'listing_id')
