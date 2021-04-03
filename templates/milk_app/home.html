@@ -16,20 +16,23 @@
             
             <!-- Scroll other properties -->
             <div class="center-block col-4">
-                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
+                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive img-center" src="{% static 'images/scroll-others.jpg' %}">
                 <h4>Scroll all properties</h4>
+                </a>
             </div>
 
             <!-- Transfers HOST user to a page where he can add a new listing -->
             <div class="center-block col-4">
-                <a href="{% url 'milk_app:add_listing' %}"><img class="img-responsive" src="{% static 'images/listing-property.jpg' %}"></a>
+                <a href="{% url 'milk_app:add_listing' %}"><img class="img-responsive img-center" src="{% static 'images/listing-property.jpg' %}">
                 <h4>Create a new listing</h4>
+                </a>
             </div>
             
             <!-- Refers the HOST user to the page where he sees all his currently enlisted and also rented out properties -->
             <div class="center-block col-4">
-                <a href="{% url 'milk_app:my_listings' %}"><img class="img-responsive" src="{% static 'images/your-properties.jpg' %}"></a>
+                <a href="{% url 'milk_app:my_listings' %}"><img class="img-responsive img-center" src="{% static 'images/your-properties.jpg' %}">
                 <h4>Show your rented properties</h4>
+                </a>
             </div>
 
             
@@ -43,13 +46,14 @@
             
             <!-- Scroll other properties-->
             <div class="center-block col-4">
-                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
+                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive img-center" src="{% static 'images/scroll-others.jpg' %}">
                 <h4>Scroll all properties</h4>
+                </a>
             </div>
 
             <!-- Check user's currently rented properties-->
             <div class="center-block col-4">
-                <a href="{% url 'milk_app:my_listings' %}"><img class="img-responsive" src="{% static 'images/listing-property.jpg' %}"></a>
+                <a href="{% url 'milk_app:my_listings' %}"><img class="img-responsive img-center"  src="{% static 'images/listing-property.jpg' %}">
                 
                 <!-- If user has any, refers them to those -->
                 {% if user. %} 
@@ -59,6 +63,7 @@
                     
                 {% endif %}
                 <h4>Check out your own rentals</h4>
+                </a>
 
             </div>
 
@@ -70,11 +75,12 @@
         <div class="row">
             
             <!-- Scroll other properties-->
-            <div class="center-block col-4">
-                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
+            <div class="col-4 img-container">
+                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive img-center" src="{% static 'images/scroll-others.jpg' %}">
                 <h4>Scroll all properties</h4>
-            </div>
-
+                </a>
+            </div>  
+        
         </div>
     </div>
 {% endif %}
