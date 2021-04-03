@@ -38,20 +38,14 @@
                     <ul class="navbar-nav ml-auto" >
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:home' %}">Home</a></li>
                         <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:about' %}">About</a></li>
-                        <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:browse_listings' %}">Browse Listings</a></li>
 
+                        <!-- If the user is logged in, either as HOST or TENANT he gets these buttons available -->
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:logout' %}">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:profile' %}">View Profile</a></li>                        
                             
-                            <!-- Only hosts can add listings -->
-                            {% if user.userprofile.account == "Host" %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:add_listing' %}">Add a listing</a></li>
-                            {% endif %}
-
-                        <li class="nav-item "><a class="nav-link" href="{% url 'milk_app:my_listings' %}">Browse My Listings</a></li>
+                        <!-- Otherwise he can either log-in/register -->
                         {% else %}
-
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:register' %}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:login' %}">Login</a></li>
                         {% endif %}
