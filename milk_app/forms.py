@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.fields import ImageField
+from django.forms.widgets import Textarea
 from milk_app.models import Listing, UserProfile
 from django.contrib.auth.models import User
 import datetime
@@ -34,12 +35,22 @@ import datetime
 #         return cleaned_data
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget = forms.PasswordInput())
-    password_confirm = forms.CharField(widget = forms.PasswordInput())
+    password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder' : 'Password'}))
+    password_confirm = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder' : 'Confirm Password'}))
+    username = forms.CharField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Username'}))
+    email = forms.CharField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Email'}))
 
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
+
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Username'}))
+    password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder' : 'Password'}))
+    
+    class Meta:
+        model = User
+        fields = ('username', 'password')
 
 class UserProfileForm(forms.ModelForm):
 

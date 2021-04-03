@@ -1,31 +1,24 @@
 from milk_app.models import Listing, UserProfile
 from django.shortcuts import render
 from django.http import HttpResponse
-from milk_app.forms import ListingForm, UserForm, UserProfileForm, UserProfileUpdateForm, UserUpdateForm
+from milk_app.forms import ListingForm, UserForm, UserProfileForm, UserProfileUpdateForm, UserUpdateForm, LoginForm
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from uuid import uuid4 as uuid
 
 # Create your views here.
 # Homepage for starters - nothing interesting
 def home(request):
 
     context_dict = {}
-    # context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
-    # context_dict['categories'] = category_list
-    # context_dict['pages'] = page_list
 
-    # visitor_cookie_handler(request)
     return render(request, 'milk_app/home.html', context=context_dict)
 
 def about(request):
     
     context_dict = {}
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
     
     response = render(request, 'milk_app/about.html',context = context_dict)
     return response
@@ -45,7 +38,7 @@ def faq (request):
 
 def register(request):
     registered = False
-    domains = [".edu",".ac.uk",".ac.nz"] 
+    domains = [".edu",".ac.uk",".ac.nz", ".student","@student"] 
 
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -56,7 +49,7 @@ def register(request):
            
         ##CHECK FOR UNI EMAIL DOMAIN
         if role == "Tenant" and not any(x in email for x in domains):                
-            user_form.add_error('email', 'Please enter a valid University email address:')
+            user_form.add_error('email', 'Please enter a valid University email address')
 
         elif user_form.is_valid() and user_form.cleaned_data['password'] == user_form.cleaned_data['password_confirm'] and profile_form.is_valid():
             
@@ -66,15 +59,12 @@ def register(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
-
-            # if 'picture' in request.FILES:
-            #     profile.picture = request.FILES['picture']
             
             profile.save()
             registered = True
             login(request,user)
         elif user_form.cleaned_data['password'] != user_form.cleaned_data['password_confirm']:
-             user_form.add_error('password_confirm', 'The passwords do not match')
+             user_form.add_error('password_confirm', 'The passwords do not match - please enter 2 matching passwords')
         else:
             print(user_form.errors, profile_form.errors)
     
@@ -85,30 +75,29 @@ def register(request):
     return render(request, 'milk_app/register.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 def user_login(request):
+    context_dict = {}
+    login_form = LoginForm()
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        login_form = LoginForm(request.POST)
+
+        username = login_form['username'].value()
+        password = login_form['password'].value()
 
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active:
-                
-                login(request, user)
-
-                return redirect(reverse('milk_app:home'))
-            else:
-                return HttpResponse("Your MilkStudents account is disabled.")
+            login(request, user)
+            return redirect(reverse('milk_app:home'))
         else:
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        
-        return render(request, 'milk_app/login.html')
+            login_form.add_error(None, "Incorrect details provided - Please try again")
+    
+        print(login_form.errors)
+    
+    return render(request, 'milk_app/login.html', {"login_form" : login_form})
 
 def show_listing(request, listing_id_slug):
     context_dict = {}
-    #context_dict['current_user'] = "anon" #anon by default
 
     try:
         listing = Listing.objects.get(slug = listing_id_slug)
@@ -146,13 +135,9 @@ def remove_listing(request, listing_id_slug): #know for a fact its tenant
 
     return render(request, 'milk_app/home.html')
 
-
-
-
 @login_required
 def add_listing(request):
     form = ListingForm()
-
 
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
@@ -161,12 +146,9 @@ def add_listing(request):
             
             listing = form.save(commit=False)
             listing.user = request.user.userprofile
-            listing.listing_id = uuid().hex
-            listing.picture = request.FILES['picture']
+            listing.save()
 
-            listing.save() #final save. we generated primary key.
-
-            return redirect(reverse('milk_app:home'))
+            return redirect(reverse('milk_app:my_listings'))
         else:
             print(form.errors)
 
@@ -179,7 +161,7 @@ def browse_listings(request):
     if request.method == 'POST': #if user searching for smthn
         try:
             search = request.POST.get('search')
-            listings = listings.filter(uniName__icontains = search)
+            listings = listings.filter(university__icontains = search)
             context_dict['search'] = search
             context_dict['searched'] = True   
         except:
@@ -198,7 +180,6 @@ def my_listings(request):
 
     user_p = request.user.userprofile
     
-
     context_dict = {}
     my_listings = Listing.objects.filter(user = user_p)
 
@@ -234,12 +215,9 @@ def user_profile(request):
     response = render(request, 'milk_app/profile.html',context = context_dict)
     return response
 
-
-
 @login_required
 def user_logout(request):
     logout(request)
-
     return redirect(reverse('milk_app:home'))
 
 @login_required
@@ -256,4 +234,3 @@ def register_profile(request):
         print(form.errors)
     context_dict = {'form': form}
     return render(request, 'milk_app/profile_registration.html', context_dict)
-

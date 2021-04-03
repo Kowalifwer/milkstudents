@@ -9,10 +9,14 @@
 <h1>Login to MilkStudents</h1>
 <form id="login_form" method="post" action="{% url 'milk_app:login' %}">
     {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
+    {% load crispy_forms_tags %}
+    {{ login_form|crispy }}
+
+    <!-- Username: <input type="text" name="username" value="" size="50" />
     <br />
     Password: <input type="password" name="password" value="" size="50" />
     <br />
-    <input type="submit" value="submit" />
+    <input type="submit" value="submit" /> -->
+    <button class = "btn btn-primary" type="submit" name="submit"> Log in </button>
 </form>
 {% endblock %}
