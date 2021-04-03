@@ -39,8 +39,10 @@
                     <button type = 'submit'> Rent Listing</button>
                 </form>
 
-                {% elif current_user.account == 'Host' %}
+
+                {% elif current_user.account == 'Host' and owner_info.user.username == current_user.user.username %}
                 <a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="focus" title="Update Listing" data-content="Update Listing">Update Listing</a>
+                
                 <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
                     <button type = 'submit'> Remove Listing</button>
