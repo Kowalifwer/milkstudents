@@ -14,35 +14,69 @@
     <div class="container">
         <div class="row">
             
-            <div class="home_hover_pictures col-4">
+            <!-- Scroll other properties -->
+            <div class="center-block col-4">
+                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
+                <h4>Scroll all properties</h4>
+            </div>
+
+            <!-- Transfers HOST user to a page where he can add a new listing -->
+            <div class="center-block col-4">
                 <a href="{% url 'milk_app:add_listing' %}"><img class="img-responsive" src="{% static 'images/listing-property.jpg' %}"></a>
                 <h4>Create a new listing</h4>
             </div>
             
-            <div class="home_hover_pictures col-4">
+            <!-- Refers the HOST user to the page where he sees all his currently enlisted and also rented out properties -->
+            <div class="center-block col-4">
                 <a href="{% url 'milk_app:my_listings' %}"><img class="img-responsive" src="{% static 'images/your-properties.jpg' %}"></a>
                 <h4>Show your rented properties</h4>
             </div>
 
-            <div class="home_hover_pictures col-4">
-                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
-                <h4>Scroll other properties</h4>
-            </div>
+            
         </div>
     </div>
 
 <!-- Home page for Tenants (not the beer) -->
 {% elif user.userprofile.account == 'Tenant' %}
+    <div class="container">
+        <div class="row">
+            
+            <!-- Scroll other properties-->
+            <div class="center-block col-4">
+                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
+                <h4>Scroll all properties</h4>
+            </div>
 
+            <!-- Check user's currently rented properties-->
+            <div class="center-block col-4">
+                <a href="{% url 'milk_app:my_listings' %}"><img class="img-responsive" src="{% static 'images/listing-property.jpg' %}"></a>
+                
+                <!-- If user has any, refers them to those -->
+                {% if user. %} 
+
+                <!-- If does not have any, refers them to their homepage with an error message -->
+                {% else %}
+                    
+                {% endif %}
+                <h4>Check out your own rentals</h4>
+
+            </div>
+
+        </div>
+    </div>
 <!-- Home page for not logged users -->
 {% else %}
-<br><br>    
-    <section >
-        <div>
+    <div class="container">
+        <div class="row">
             
+            <!-- Scroll other properties-->
+            <div class="center-block col-4">
+                <a href="{% url 'milk_app:browse_listings' %}"><img class="img-responsive" src="{% static 'images/scroll-others.jpg' %}"></a>
+                <h4>Scroll all properties</h4>
+            </div>
+
         </div>
-    </section>
-    
+    </div>
 {% endif %}
 
 
