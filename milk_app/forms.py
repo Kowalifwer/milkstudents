@@ -44,7 +44,8 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('picture','account' )        
+        fields = ('account',)  
+        exclude = ('picture',)      
 
 class ListingForm(forms.ModelForm):
 
@@ -57,7 +58,7 @@ class ListingForm(forms.ModelForm):
     date = forms.DateField(widget=forms.HiddenInput(), initial = datetime.date.today())
     uniName = forms.CharField(max_length= 40, initial = "University of Glasgow", help_text="name of uni")
     
-    picture = forms.ImageField(required = False, help_text = "Image of Property")
+    picture = forms.ImageField(label = 'Select a file', help_text = "Image of Property")
     
     
     slug = forms.SlugField(widget=forms.HiddenInput(), required = False)

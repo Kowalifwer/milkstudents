@@ -54,8 +54,6 @@ def register(request):
         role = profile_form['account'].value()
         email = user_form['email'].value()
            
-
-
         ##CHECK FOR UNI EMAIL DOMAIN
         if role == "Tenant" and not any(x in email for x in domains):                
             user_form.add_error('email', 'Please enter a valid University email address:')
@@ -69,8 +67,8 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
 
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
+            # if 'picture' in request.FILES:
+            #     profile.picture = request.FILES['picture']
             
             profile.save()
             registered = True
@@ -155,18 +153,17 @@ def remove_listing(request, listing_id_slug): #know for a fact its tenant
 def add_listing(request):
     form = ListingForm()
 
-    # Listing.objects.filter()
-    # request.POST.get('')
 
     if request.method == 'POST':
-        form = ListingForm(request.POST)
+        form = ListingForm(request.POST, request.FILES)
 
         if form.is_valid():
             
-            update = form.save(commit=False)
-            update.user = request.user.userprofile
-            update.listing_id = uuid().hex
-            update.save() #final save. we generated primary key.
+            listing = form.save(commit=False)
+            listing.user = request.user.userprofile
+            listing.listing_id = uuid().hex
+
+            listing.save() #final save. we generated primary key.
 
             return redirect(reverse('milk_app:home'))
         else:

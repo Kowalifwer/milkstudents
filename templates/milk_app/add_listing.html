@@ -14,17 +14,26 @@
 
 <div class="jumbotron p-2" style = "width: 22rem;">
     <div class="container padding-4">
-        <form id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}">
+        <form id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">
             
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
+
+            <!-- <p>{{form.name}} - Name your listing:</p>
+            <p>{{form.address}} - Enter Address</p>
+            <p>{{form.description}} - Description</p>
+            <p>{{form.uniName}} - Uni name</p>
+            <p>{{form.picture}} - Picture</p> -->
+
+            
             {% for field in form.visible_fields %}
                 {{ field.errors }}
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
+
             <input type="submit" name="submit" value="Create Listing" />
         </form>
 

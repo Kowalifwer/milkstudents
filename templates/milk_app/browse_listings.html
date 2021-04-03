@@ -16,30 +16,31 @@
 
         <div>
             
-            {% if listings %}
-                
-                {% if not searched %}
+            {% if not searched %}
                     <p>Popular listings:</p>
 
                 {% else %}
                     <p>Listings relevant to your search: '{{search}}'</p>
-                {% endif %}
-                    
+            {% endif %}
+
+            {% if listings %}
+                       
                 
                 {% for l in listings  %}
-                    <li><strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a> - {{l.uniName}}
-                    <!-- ADD CODE HERE TO SHOW PICTURE MAYBE {% if l.picture %}
-                        l.picture
-                    {% endif %} -->
-
+                    <li>
+                        <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a> - {{l.uniName}}
                         
-                        
-                         </strong></li>
+                        {% if l.picture %}
+                            <img src = "/media/{{l.picture}}"> Click </img>
+                        {% endif %}
+                            
+       
+                    </strong></li>
                 {% endfor %}
                 
        
             {% else %}       
-                <p> NO LISTINGS AVAILABLE LMAO</p>
+                <p> No Relevant listings available</p>
 
             {% endif %}
             
