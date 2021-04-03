@@ -41,6 +41,25 @@
 
                         <!-- If the user is logged in, either as HOST or TENANT he gets these buttons available -->
                         {% if user.is_authenticated %}
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          
+                          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                            <ul class="navbar-nav">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Dropdown
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                  <li><a class="dropdown-item" href="#">Action</a></li>
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                          
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:logout' %}">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'milk_app:profile' %}">View Profile</a></li>                        
                             
@@ -75,7 +94,7 @@
                     <!-- FOOTER -->
                     
                     <footer class="fixed-bottom">
-                        <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}" class="footer-href">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}" class="footer-href">Contact Us &middot;</a> <a href="{% url 'milk_app:FAQ' %}" class="footer-href" >FAQ</a> {% if user.is_authenticated %}&middot; LOGGED USER: {{user.username}} &middot; ROLE: {{user.userprofile.account}}{%endif%} </p>
+                        <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}" class="footer-href">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}" class="footer-href">Contact Us</a> &middot; <a href="{% url 'milk_app:FAQ' %}" class="footer-href" >FAQ</a> {% if user.is_authenticated %}&middot; LOGGED USER: {{user.username}} &middot; ROLE: {{user.userprofile.account}}{%endif%} </p>
                     </footer>
 
                 </div>
@@ -84,10 +103,12 @@
         
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
+        
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
+        
         <!-- Enables the popover buttons everywhere -->
         <script>
             $(function () {
