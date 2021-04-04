@@ -67,14 +67,15 @@ class Listing(models.Model):
 
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
     
-    listing_id = models.UUIDField(primary_key=True, default=uuid.uuid4().hex, editable=False)
+    listing_id = models.UUIDField(primary_key=True)
+    
     name = models.CharField(max_length = 40)
     description = models.CharField(max_length= 500)
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
     rating = models.IntegerField(null=True)
     picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
-    date = models.DateField(default = datetime.datetime.now(), editable = True)
+    date = models.DateField(default = datetime.date.today, editable = True)
     university = models.CharField(max_length= 40)
 
     slug = models.SlugField(unique=True)

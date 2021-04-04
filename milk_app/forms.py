@@ -77,7 +77,7 @@ class ListingForm(forms.ModelForm):
     class Meta:
         model = Listing
         fields = ('name','description','address','university','picture')
-        exclude = ('user', 'rating', 'date', 'price', 'listing_id', 'slug')
+        exclude = ('user', 'rating', 'date', 'price', 'listing_id')
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Email'}))
