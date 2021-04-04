@@ -84,3 +84,15 @@ footer img  {
   height: 8rem;
   margin: 1.5rem 0;
 }
+
+/*-- Cards ---*/
+
+.card {
+
+}
+
+.card-img-top {
+  max-height:160px; 
+  min-height:160px;
+  object-fit: cover
+}
