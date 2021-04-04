@@ -144,6 +144,8 @@ def purchase_listing(request, listing_id_slug): #know for a fact its tenant
     listing = Listing.objects.get(slug = listing_id_slug)
     #update the owner of the listing 
     listing.user = buyer
+    #update date
+    listing.date = datetime.datetime.now()
     listing.save()
 
     return redirect(reverse('milk_app:my_listings'))

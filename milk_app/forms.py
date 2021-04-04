@@ -88,6 +88,8 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class UserProfileUpdateForm(forms.ModelForm):
+    picture = forms.ImageField(widget=forms.FileInput, label = "Update your profile image", error_messages = {'invalid':("Image files only")}, required = False)
+
 
     class Meta:
         model = UserProfile
