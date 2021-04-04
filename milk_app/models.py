@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 import uuid
 import os
-
+import datetime
 # Create your models here.
 # class Category(models.Model):
 #     NAME_MAX_LENGTH = 128
@@ -40,7 +40,7 @@ import os
 
 def generate_filename_userpic(instance, filename):
     ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
+    filename = "%s.%s" % (uuid.uuid4().hex, ext)
     return os.path.join('profile_images', filename)
 
 class UserProfile(models.Model):
@@ -51,14 +51,15 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to=generate_filename_userpic, blank=True)
     account = models.CharField(   max_length = 6, 
                                   choices = [(None,""), ("Host","Host"),("Tenant","Tenant")],
-                                  help_text= "What kind of account is this?",
+                                  help_text= "Note: You must provide a valid Student email to Register as a Tenant",
                                   blank=False)
+
     def __str__(self):
         return self.user.username
 
 def generate_filename_listing(instance, filename):
     ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
+    filename = "%s.%s" % (uuid.uuid4().hex, ext)
     return os.path.join('listing_images', filename)
 
 
@@ -66,14 +67,14 @@ class Listing(models.Model):
 
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
     
-    listing_id = models.CharField(max_length = 32, primary_key= True)
+    listing_id = models.UUIDField(primary_key=True, default=uuid.uuid4().hex, editable=False)
     name = models.CharField(max_length = 40)
     description = models.CharField(max_length= 500)
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
     rating = models.IntegerField(null=True)
     picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
-    date = models.DateField(null=True)
+    date = models.DateField(default = datetime.datetime.now(), editable = True)
     university = models.CharField(max_length= 40)
 
     slug = models.SlugField(unique=True)
