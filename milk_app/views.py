@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+import uuid
+
 domains = [".edu",".ac.uk",".ac.nz", ".student","@student"] 
 # Create your views here.
 # Homepage for starters - nothing interesting
@@ -168,6 +170,7 @@ def add_listing(request):
             
             listing = form.save(commit=False)
             listing.user = request.user.userprofile
+            listing.listing_id = uuid.uuid4().hex
             listing.save()
 
             return redirect(reverse('milk_app:my_listings'))

@@ -14,10 +14,8 @@
 
 <div class="jumbotron p-2" style = "width: 22rem;">
     <div class="container padding-4">
-        <form  id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">
-            
+        <form  id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">  
             {% csrf_token %}
-
 
             {{ listing_form|crispy }}
 
