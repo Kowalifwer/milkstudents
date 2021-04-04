@@ -2,7 +2,7 @@
 
 {% extends 'milk_app/base.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block title_block %}
 
@@ -50,13 +50,24 @@
                 <!-- If you are a Host view -->
                 {% elif current_user.account == 'Host' and owner_info.user.username == current_user.user.username %}
                 <p>Date added: {{listing.date}}</p>
-
-                <a tabindex="0" class="btn btn-lg btn-warning" role="button" data-toggle="popover" data-trigger="focus" title="Update Listing" data-content="Update Listing">Update Listing</a>
                 
                 <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
-                    <button type = 'submit'> Remove Listing</button>
+                    <button class = "btn btn-primary" type = 'submit'> Remove Listing</button>
                 </form>
+
+
+
+                <div> <button class = "btn btn-primary" type="button" id="formButton"> Update Listing </button></div> 
+
+                <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:show_listing' listing.slug %} ">
+                    {%csrf_token%}
+
+                    {{updated_listing|crispy}}
+
+                    <button class = "btn btn-primary" type='submit' name = 'submit'>Confirm Changes</button>
+                </form>
+
                 
                 <!-- If not authenticated -->
                 {% else %}

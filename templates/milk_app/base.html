@@ -94,7 +94,7 @@
                     <!-- FOOTER -->
                     
                     <footer class="fixed-bottom">
-                        <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}" class="footer-href">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}" class="footer-href">Contact Us</a> &middot; <a href="{% url 'milk_app:FAQ' %}" class="footer-href" >FAQ</a> {% if user.is_authenticated %}&middot; LOGGED USER: {{user.username}} &middot; ROLE: {{user.userprofile.account}} {%else%} You are currently not logged in.{%endif%} </p>
+                        <p> &copy; MilkStudents.com &middot; <a href="{% url 'milk_app:careers' %}" class="footer-href">Careers</a> &middot; <a href="{% url 'milk_app:contact' %}" class="footer-href">Contact Us</a> &middot; <a href="{% url 'milk_app:FAQ' %}" class="footer-href" >FAQ</a> {% if user.is_authenticated %}&middot; LOGGED USER: {{user.username}} &middot; ROLE: {{user.userprofile.account}} &middot; EMAIL: {{user.email}}{%else%} You are currently not logged in.{%endif%} </p>
                     </footer>
 
                 </div>

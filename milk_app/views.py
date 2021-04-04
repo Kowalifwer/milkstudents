@@ -1,13 +1,13 @@
 from milk_app.models import Listing, UserProfile
 from django.shortcuts import render
 from django.http import HttpResponse
-from milk_app.forms import ListingForm, UserForm, UserProfileForm, UserProfileUpdateForm, UserUpdateForm, LoginForm
+from milk_app.forms import ListingForm, UpdateListingForm, UserForm, UserProfileForm, UserProfileUpdateForm, UserUpdateForm, LoginForm
 from django.shortcuts import redirect
 from django.urls import reverse 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
+domains = [".edu",".ac.uk",".ac.nz", ".student","@student"] 
 # Create your views here.
 # Homepage for starters - nothing interesting
 def home(request):
@@ -38,7 +38,7 @@ def faq (request):
 
 def register(request):
     registered = False
-    domains = [".edu",".ac.uk",".ac.nz", ".student","@student"] 
+    
 
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -97,18 +97,38 @@ def user_login(request):
     return render(request, 'milk_app/login.html', {"login_form" : login_form})
 
 def show_listing(request, listing_id_slug):
+    update_form = UpdateListingForm()
+
     context_dict = {}
 
     try:
+        #listing object reference
         listing = Listing.objects.get(slug = listing_id_slug)
+
+        ### UPDATE LISTING CODE ###
+        if request.method == 'POST':
+            update_form = UpdateListingForm(request.POST, request.FILES, instance = listing)
+
+        if update_form.is_valid():
+            #push update to database
+            update_form.save(commit=True)
+            
+        else:
+            update_form = UpdateListingForm(instance = listing)
+            
+            print(update_form.errors)
+    
         owner = listing.user #pass owner data into context dict
 
         context_dict['listing'] = listing
         context_dict['owner_info'] = owner
+        context_dict['updated_listing'] = update_form
 
     except Listing.DoesNotExist:
         context_dict['listing'] = None
    
+    
+
     if request.user.is_authenticated: #if current user is authenticated - send in their role to context dict.
         context_dict['current_user'] = request.user.userprofile
 
@@ -126,14 +146,14 @@ def purchase_listing(request, listing_id_slug): #know for a fact its tenant
     listing.user = buyer
     listing.save()
 
-    return render(request, 'milk_app/home.html')
+    return redirect(reverse('milk_app:my_listings'))
 
 @login_required
 def remove_listing(request, listing_id_slug): #know for a fact its tenant
     #Delete the object from db completely
     Listing.objects.filter(slug = listing_id_slug).delete()
 
-    return render(request, 'milk_app/home.html')
+    return redirect(reverse('milk_app:my_listings'))
 
 @login_required
 def add_listing(request):
@@ -154,6 +174,7 @@ def add_listing(request):
 
     return render(request, 'milk_app/add_listing.html', {'listing_form': form})
 
+
 def browse_listings(request):
     context_dict = {}
     listings = Listing.objects.filter(user__account = "Host")
@@ -171,7 +192,6 @@ def browse_listings(request):
     
     context_dict['listings'] =listings
     
-
     return render(request, 'milk_app/browse_listings.html', context_dict)
 
 @login_required
@@ -191,22 +211,26 @@ def my_listings(request):
 @login_required
 def user_profile(request):
     context_dict = {}
+    user = request.user
+    user_profile = request.user.userprofile
 
     p_form = UserProfileUpdateForm()
     u_form = UserUpdateForm()
 
     if request.method == 'POST':
-        p_form = UserProfileUpdateForm(request.POST,request.FILES, instance = request.user.userprofile)
-        u_form = UserUpdateForm(request.POST, instance = request.user)
+        u_form = UserUpdateForm(request.POST, instance = user)
+        p_form = UserProfileUpdateForm(request.POST,request.FILES, instance = user_profile)
 
-        if p_form.is_valid() and u_form.is_valid():
-            u_form.save(commit = True)
-            p_form.save(commit = True)
-            return redirect(reverse('milk_app:profile'))
+    if p_form.is_valid() and u_form.is_valid():
+        u_form.save(commit = True)
+        p_form.save(commit = True)
+        return redirect(reverse('milk_app:profile'))
+    
+    else:
         
-        else:
-            p_form = UserProfileUpdateForm(instance=request.user)
-            u_form = UserUpdateForm(instance=request.user.userprofile)
+        u_form = UserUpdateForm(instance=user)
+        p_form = UserProfileUpdateForm(instance=user_profile)
+        print(p_form.errors, u_form.errors)
     
     context_dict['p_form'] = p_form
     context_dict['u_form'] = u_form

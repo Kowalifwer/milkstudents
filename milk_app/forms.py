@@ -1,3 +1,4 @@
+from typing import Optional
 from django import forms
 from django.forms.fields import ImageField
 from django.forms.widgets import Textarea
@@ -38,7 +39,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder' : 'Password'}))
     password_confirm = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder' : 'Confirm Password'}))
     username = forms.CharField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Username'}))
-    email = forms.CharField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Email'}))
+    email = forms.EmailField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Email'}))
 
     class Meta:
         model = User
@@ -59,7 +60,27 @@ class UserProfileForm(forms.ModelForm):
         fields = ('account',)  
         exclude = ('picture',)
 
+class ListingForm(forms.ModelForm):
+
+    
+    name = forms.CharField(max_length = 40, widget = forms.TextInput(attrs = {'placeholder' : 'Name your listing'}), label= "Listing name")
+    description = forms.CharField(max_length= 500, widget = forms.TextInput(attrs = {'placeholder' : 'Describe your listing'}), label = "Description")
+    #price = forms.IntegerField(widget=forms.HiddenInput(),required = False)
+    address = forms.CharField(max_length = 100, widget = forms.TextInput(attrs = {'placeholder' : 'Apparment, studio, or floor'}))
+    university = forms.CharField(max_length= 40, widget = forms.TextInput(attrs = {'placeholder' : 'Which Univeristy is the lisiting relevant to'}), label = "Univeristy name")
+    
+    picture = forms.ImageField(label = 'Select a file')
+    
+    
+    slug = forms.SlugField(widget=forms.HiddenInput(), required = False)
+
+    class Meta:
+        model = Listing
+        fields = ('name','description','address','university','picture')
+        exclude = ('user', 'rating', 'date', 'price', 'listing_id', 'slug')
+
 class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Email'}))
 
     class Meta:
         model = User
@@ -72,25 +93,13 @@ class UserProfileUpdateForm(forms.ModelForm):
         model = UserProfile
         fields = ('picture',)
 
-   
 
-class ListingForm(forms.ModelForm):
-
-    
-    name = forms.CharField(max_length = 40, widget = forms.TextInput(attrs = {'placeholder' : 'Name your listing'}), label= "Listing name")
-    description = forms.CharField(max_length= 500, widget = forms.TextInput(attrs = {'placeholder' : 'Describe your listing'}), label = "Description")
-    #price = forms.IntegerField(widget=forms.HiddenInput(),required = False)
-    address = forms.CharField(max_length = 100, widget = forms.TextInput(attrs = {'placeholder' : 'Apparment, studio, or floor'}))
-    #rating = forms.IntegerField(widget=forms.HiddenInput(), required = False)
-    #date = forms.DateField(widget=forms.HiddenInput(), initial = datetime.date.today())
-    university = forms.CharField(max_length= 40, widget = forms.TextInput(attrs = {'placeholder' : 'Which Univeristy is the lisiting relevant to'}), label = "Univeristy name")
-    
-    picture = forms.ImageField(label = 'Select a file')
-    
-    
-    slug = forms.SlugField(widget=forms.HiddenInput(), required = False)
+class UpdateListingForm(forms.ModelForm):
+    name = forms.CharField(max_length = 40, widget = forms.TextInput(attrs = {'placeholder' : 'Enter a new name for your listing'}), label= "Listing name", required= True)
+    description = forms.CharField(max_length= 500, widget = forms.TextInput(attrs = {'placeholder' : 'Enter a new description'}), label = "Description", required = True)
+    picture = forms.ImageField(widget=forms.FileInput, label = "Update the listing's image", error_messages = {'invalid':("Image files only")}, required = False)
 
     class Meta:
         model = Listing
-        fields = ('name','description','address','university','picture')
-        exclude = ('user', 'rating', 'date', 'price', 'listing_id', 'slug')
+        fields = ('name', 'description', 'picture', )    
+
