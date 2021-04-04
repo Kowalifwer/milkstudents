@@ -27,7 +27,13 @@
       
       <!-- Slide number 2 // H -->
       <div class="carousel-item" style="background-image: url('/static/images/house1.jpg')"></div>
-        
+        <div class="carousel-caption text-center">
+          <h1>Join our growing community of members!</h1>
+          <h3>Register if you don't have an account yet</h3>
+          <a class="btn btn-outline-light btn-lg" href="{% url 'milk_app:register' %}" role="button">register</a>
+          <h3>Log in if you're already a member</h3>
+          <a class="btn btn-outline-light btn-lg" href="{% url 'milk_app:login' %}" role="button">log in</a>
+        </div>
         
       
       <!-- Slide number 3 -->
@@ -35,7 +41,6 @@
 
   </div> 
 <!-- End of the inner carousel -->
-
 <!-- Buttons for navigating to previous and next carousel image -->
 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,18 +49,15 @@
 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
   <span class="carousel-control-next-icon" aria-hidden="true"></span>
 </a>
-
 </div>
 <!-- End of the image slider -->
 <!-- End of the home section -->
   
-<!-- Start of the course section-->
 
-<!-- Start of the portfolio section -->
-<div id="portfolio" class="offset">
+<!-- Start of the section below carousel -->
 
-</div>
-<!-- End of the portfolio section -->
+<!-- End of the section below carousel -->
+
 
 
 <!-- Start of the team section -->
@@ -65,10 +67,9 @@
 
 <!-- End of the team section -->
 
-
+<div id="#body-section">
 <!-- Home page for Hosts -->
 {% if user.userprofile.account == "Host" %}
-    
     <div class="row">
         <div class="col">
         <h1 class="text-center">What do you wish to do?</h1>
@@ -77,7 +78,6 @@
 
     <div class="container">
         <div class="row justify-content-center align-items-center   ">
-
 
             <div class="col-10 col-md-4">
             <!-- Scroll other properties -->
@@ -188,5 +188,16 @@
     </div>
 {% endif %}
 {% endblock %}
+  </div>
 
+  <script>
+    var scroll = new SmoothScroll('a[href*="#"]');
+  </script>
+
+
+<script>
+  $('.carousel').on('slid.bs.carousel', function () {
+   $('#text').html($('.active > .carousel-caption').html());
+   });
+</script>
 
