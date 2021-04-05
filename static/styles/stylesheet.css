@@ -49,7 +49,7 @@ body  {
 
 #created-by {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 150px;
   margin-top: -50px;
 }
 
@@ -161,13 +161,12 @@ footer img  {
 .card-body  {
   text-align: center;
   color: #333;
-
 }
 
 .card-img-top {
-  max-height:160px; 
-  min-height:160px;
-  object-fit: cover
+  max-height:350px; 
+  min-height:350px;
+  object-fit: cover;
 }
 
 .top-space-heading  {

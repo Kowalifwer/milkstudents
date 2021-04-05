@@ -81,9 +81,9 @@
     {% block body_block %}{% endblock %}
 
     <!-- Start of the contact section -->
-    <div id="contact" class="offset">
-        <!-- FOOTER -->
-        <footer>
+    <!-- <div id="contact" class="offset">
+        footer
+        <footer class="page-footer bg-dark">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <img src="{% static 'images/logo.jpg' %}">
@@ -94,8 +94,45 @@
                 </div>
             </div>
         </footer>
+    </div> -->
 
-    </div>
+    <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+
+          </div>
+        </div>
+        <div class="row">
+          
+          <div class="col-md-4 text-center">
+            <p>
+              <span class="icon-room d-block h4 text-primary"></span>
+              <span class="h5 text-primary"> Glasgow, United Kingdom</span><br><br>   
+            </p>
+            <iframe src="https://maps.google.com/maps?q=University%20of%20Glasgow%20Glasgow%20G12%208QQ,%20United%20Kingdom&t=&z=13&ie=UTF8&iwloc=&output=embed" width="330" height="200" frameborder="0" style="border:0;margin-top:-27px;height: 250px;" allowfullscreen=""></iframe>
+          </div>
+          <div class="col-md-4 text-center">
+            <p class="mb-4">
+              <span class="icon-phone d-block h4 text-primary"></span>
+              </p><p class="h5 text-primary">Made by:</p>
+              <br>
+              
+              <p>Oliver Alan Štafurik</p>
+              <a href="#">github</a>
+            <br>
+             <p>Artem Grechushkin</p>
+              <a href="#">github</a>
+              <br>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <p class="mb-4">
+                <img src="{% static 'images/logo.jpg' %}">
+                    <p>Worked on this project over the couple of last weeks in a team of two people. Hopefully it helps
+                        finding you the student accomodation you really deserve!</p>
+          </div>
+        </div>
+      </div>
 
 
 
