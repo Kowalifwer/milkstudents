@@ -102,7 +102,6 @@
 
 <!-- Home page for Hosts -->
 {% if user.userprofile.account == "Host" %}
-
 <div class="container-fluid container py-3 mt-4">
     <h2 class="h3">Which of these actions do you want to take? </h2>
     <div class="row mt-4">
@@ -110,67 +109,50 @@
             <!-- Scroll other properties -->
             <a href="{% url 'milk_app:browse_listings' %}"> <!-- this makes the whole card clickable -->  
             <div class="card mb-3 h-100">
-                <img src="{% static 'images/card1.jpg' %}" class="card-img-top" alt="...">
+                <img src="{% static 'images/card1.jpg' %}" class="card-img-top" alt="Card for browsing properties">
                 <div class="card-body">
                     <h5 class="card-title">Browse all properties</h5>
                     <p class="card-text">You will be referenced to a page where you see all currently enlisted properties on the market.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-            </div></a>
+            </div>
+            </a>
         </div>
         <div class="col-md-3">
             <!-- Transfers HOST user to a page where he can add a new listing -->
             <a href="{% url 'milk_app:add_listing' %}">
             <div class="card mb-3 h-100">
-                <img src="{% static 'images/card2.jpg' %}" class="card-img-top" alt="...">
+                <img src="{% static 'images/card2.jpg' %}" class="card-img-top" alt="Card for creating a listing">
                 <div class="card-body">
                     <h5 class="card-title">Create a listing</h5>
                     <p class="card-text">After pressing this button you get referenced to a page where you can create a new listing.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-            </div></a>
+            </div>
+            </a>
         </div>
         <div class="col-md-3">
             <!-- Refers the HOST user to the page where he sees all his currently enlisted and also rented out properties -->
             <a href="{% url 'milk_app:my_listings' %}">
             <div class="card mb-3 h-100">
-                <img src="{% static 'images/card3.jpg' %}" class="card-img-top" alt="...">
+                <img src="{% static 'images/card3.jpg' %}" class="card-img-top" alt="Card for showing current listings">
                 <div class="card-body">
                     <h5 class="card-title">Show my listings</h5>
                     <p class="card-text">This sends you to a site where all you properties will be enlisted.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div></a>
+                </div>
             </div>
+            </a>
         </div>
     </div>
 </div>
 
-
+{% elif user.userprofile.account == "Tenant" %}
 
 
 <!-- Home page for not logged users -->
 {% else %}
-    <div class="container">
-        <div class="row align-items-center">
-            
-            <div class="container">
-                <div class="row justify-content-center">
-        
-                  <div class="col-10 col-md-4 ">
-                    <!-- Scroll other properties -->
-                    
-                    <div class="card">
-                        <img class="img-responsive img-center" src="{% static 'images/card1.jpg' %}">
-                        
-                        <div class="card-body">
-                            <p class="card-text" ><a href="{% url 'milk_app:browse_listings' %}">Scroll all properties.</a></p>
-                        </div>
-                        </a>
-                    </div>
-                  </div>
-        
-        </div>
-    </div>
+    
 {% endif %}
 {% endblock %}
   </div>

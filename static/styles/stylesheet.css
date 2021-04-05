@@ -78,6 +78,7 @@ footer  {
   padding-top: 2rem;
   padding-bottom: 3rem;
   margin-top: 1rem;
+  text-align: center;
 }
 
 footer img  {
@@ -87,16 +88,17 @@ footer img  {
 
 /*-- Cards ---*/
 
-.card {
-
-}
-
 .card-img-top {
   max-height:160px; 
   min-height:160px;
   object-fit: cover
 }
 
+.top-space-heading  {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  text-align: center;
+}
 
 #login_form {
   display: block;
