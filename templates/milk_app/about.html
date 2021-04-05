@@ -1,5 +1,6 @@
 {% extends 'milk_app/base.html' %}
 {% load static %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 
@@ -9,19 +10,87 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-2" style = "width: 22rem;">
-    <div class="container padding-4">
-        <div h1 class="jumbotron-heading">
-            About page
-        </div>
-        <p style = "font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "class="font-weight-bold">About page set up within the views</p>  
-        <p style = "font-family: cursive; ">
-            <span style="color: cornflowerblue;">Visits: </span>
- 
-        </p>
-    </div>
 
-</div>
+<section id="language-used">
+    <h1>This app was made based on the following technologies:</h1>
+</section>
+
+<section class="about-language">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'images/html5.png' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">HTML 5</h2>
+            <p>Even bootstrap has to be based on something. And this something is html 5 in this case. Nothing too old, nothing too new.
+                Everyone always knows what to expect from the good old HTML.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-language">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'images/bootstrap-logo.png' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Bootstrap 4.2</h2>
+            <p>Bootstrap is responsible for all the responsiveness and adjusting of the web application you can see. Almost everything was done in bootstrap, including 
+                image resizing, scrolling functions, nav-bar, etc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-language">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'images/css-logo.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">CSS 3</h2>
+            <p>All the styling was made in the css template that is attached to all the .html files. One style to rule them all, 
+                one style to find them, one style to bring them all, and in the darkness bind them. *what's up reference*</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-language">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid" src="{% static 'images/django-logo.png' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Django</h2>
+            <p>The whole back-end was built on a python extension - django. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 

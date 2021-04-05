@@ -92,6 +92,46 @@ section  {
   padding-bottom: 1.6rem;
 }
 
+/*-- About Us Page --*/
+
+
+#beginning-about-us {
+  background: url('../images/about-us1.jpg') no-repeat center center fixed; /*--- need to change to a relative path, don't know how ---*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+#beginning-about-us h1  {
+  text-transform: uppercase;
+  font-size: 4rem;
+  letter-spacing: .3rem;
+  font-weight: 700;
+  text-shadow: .1rem .1rem .8rem white;
+  padding-bottom: 1rem;
+}
+
+#beginning-about-us h3  {
+  text-transform: uppercase;
+  font-size: 2rem;
+  text-shadow: .1rem .1rem .5rem black;
+  padding-bottom: 1.6rem;
+}
+
+.about-language {
+  text-align: center;
+}
+
+.about-language h2  {
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.about-language p {
+  font-size: 16px;
+}
+
 /*--- Contact ---*/
 
 footer  {
@@ -108,7 +148,7 @@ footer img  {
   margin: 1.5rem 0;
 }
 
-/*-- Cards ---*/
+/*-- Cards --*/
 
 .card-body  {
   text-align: center;
