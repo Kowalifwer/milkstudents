@@ -65,6 +65,7 @@ def register(request):
             profile.save()
             registered = True
             login(request,user)
+
         elif user_form.cleaned_data['password'] != user_form.cleaned_data['password_confirm']:
              user_form.add_error('password_confirm', 'The passwords do not match - please enter 2 matching passwords')
         else:
@@ -170,8 +171,17 @@ def add_listing(request):
             
             listing = form.save(commit=False)
             listing.user = request.user.userprofile
+            #Generate
             listing.listing_id = uuid.uuid4().hex
             listing.save()
+
+
+            # listing = form.save(commit=False)
+            # listing.user.add(request.user.userprofile)
+            # listing.listing_id.add(uuid.uuid4().hex)
+            
+            # listing.save()
+            # form.save_m2m()
 
             return redirect(reverse('milk_app:my_listings'))
         else:

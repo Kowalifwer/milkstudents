@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'milk_app',
     'crispy_forms',
-    #'registration',
 
 ]
 

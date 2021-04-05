@@ -41,7 +41,7 @@
                 <p>Date added: {{listing.date}}</p>
                 <form action = "{% url 'milk_app:purchase_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
-                    <button type = 'submit'> Rent Listing</button>
+                    <button class = "btn btn-outline-light btn-lg" type = 'submit'> Rent Listing</button>
                 </form>
                 <!-- If you are tenant and it is your listing -->
                 {% elif current_user.account == 'Tenant' and owner_info.user.username == current_user.user.username %}
@@ -53,19 +53,19 @@
                 
                 <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
-                    <button class = "btn btn-primary" type = 'submit'> Remove Listing</button>
+                    <button class = "btn btn-outline-light btn-lg" type = 'submit'> Remove Listing</button>
                 </form>
 
 
 
-                <div> <button class = "btn btn-primary" type="button" id="formButton"> Update Listing </button></div> 
+                <div> <button class = "btn btn-outline-light btn-lg" type="button" id="formButton"> Update Listing </button></div> 
 
                 <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:show_listing' listing.slug %} ">
                     {%csrf_token%}
 
                     {{updated_listing|crispy}}
 
-                    <button class = "btn btn-primary" type='submit' name = 'submit'>Confirm Changes</button>
+                    <button class = "btn btn-outline-light btn-lg" type='submit' name = 'submit'>Confirm Changes</button>
                 </form>
 
                 
