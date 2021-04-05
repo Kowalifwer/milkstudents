@@ -19,11 +19,21 @@
     
     
     </head>
+
+    <!-- MESSAGES AFTER REDIRECTED -USEFUL FOR LOGIN/REGISTER AND OTHER IF WE NEED -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     
     <body data-spy="scroll" data-target="#navbarResponsive">
         
         <!-- Start of the home section -->
         <div id="home">
+            
 
             <!-- NAVIGATION -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">

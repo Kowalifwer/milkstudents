@@ -23,7 +23,7 @@
         <p style = "font-family: cursive; ">
             <span style="color: cornflowerblue;">
             {% if listing %}
-                {{ listing.name }} in {{listing.uniName}}
+                {{ listing.name }} in {{listing.university}}
 
                 <!-- What everyone sees -->
                 <p>Address: {{listing.address}}</p>
@@ -37,18 +37,18 @@
                 
                 <!-- Logic behind How listing should look for Host/tenant -->
                 <!-- If you are a Tenant and it is not your listing -->
-                {% if current_user.account == 'Tenant' and owner_info.user.username != current_user.user.username %} 
+                {% if user.userprofile.account == 'Tenant' and owner_info.user.username != user.userprofile.user.username %} 
                 <p>Date added: {{listing.date}}</p>
                 <form action = "{% url 'milk_app:purchase_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
                     <button class = "btn btn-outline-light btn-lg" type = 'submit'> Rent Listing</button>
                 </form>
                 <!-- If you are tenant and it is your listing -->
-                {% elif current_user.account == 'Tenant' and owner_info.user.username == current_user.user.username %}
+                {% elif user.userprofile.account == 'Tenant' and owner_info.user.username == user.userprofile.user.username %}
                 <p>Date purchased: {{listing.date}}</p>
 
                 <!-- If you are a Host view -->
-                {% elif current_user.account == 'Host' and owner_info.user.username == current_user.user.username %}
+                {% elif user.userprofile.account == 'Host' and owner_info.user.username == user.userprofile.user.username %}
                 <p>Date added: {{listing.date}}</p>
                 
                 <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 

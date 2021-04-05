@@ -9,7 +9,14 @@
 {% block body_block %}
 <h1>Login to MilkStudents</h1>
 
+{% if user.is_authenticated %}
+<strong>You have been successfully registered!</strong>
 
+
+<a href="{% url 'milk_app:profile'%}">Check out your profile</a><br />
+
+
+{% else %}
 
 <div class="text-center">
     
@@ -22,6 +29,12 @@
         <button class = "btn btn-outline-dark btn-lg" type="submit" name="submit"> Log in </button>
     </form>
 </div>
+
+
+
+{% endif %}
+
+
 
 <!-- <style>
     #login_form input {

@@ -54,6 +54,7 @@ class UserProfile(models.Model):
                                   help_text= "Note: You must provide a valid Student email to Register as a Tenant",
                                   blank=False)
 
+    
     def __str__(self):
         return self.user.username
 

@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 import uuid
+from django.contrib import messages
 
 domains = [".edu",".ac.uk",".ac.nz", ".student","@student"] 
 # Create your views here.
@@ -65,6 +66,8 @@ def register(request):
             profile.save()
             registered = True
             login(request,user)
+            messages.success(request, 'Registration Succesful!')
+            return redirect(reverse('milk_app:home'))
 
         elif user_form.cleaned_data['password'] != user_form.cleaned_data['password_confirm']:
              user_form.add_error('password_confirm', 'The passwords do not match - please enter 2 matching passwords')
@@ -91,6 +94,7 @@ def user_login(request):
 
         if user:
             login(request, user)
+            messages.success(request, 'Login succesful!')
             return redirect(reverse('milk_app:home'))
         else:
             login_form.add_error(None, "Incorrect details provided - Please try again")
@@ -175,14 +179,6 @@ def add_listing(request):
             listing.listing_id = uuid.uuid4().hex
             listing.save()
 
-
-            # listing = form.save(commit=False)
-            # listing.user.add(request.user.userprofile)
-            # listing.listing_id.add(uuid.uuid4().hex)
-            
-            # listing.save()
-            # form.save_m2m()
-
             return redirect(reverse('milk_app:my_listings'))
         else:
             print(form.errors)
@@ -257,6 +253,9 @@ def user_profile(request):
 @login_required
 def user_logout(request):
     logout(request)
+
+    messages.success(request, 'Logged out Succesfully!')
+
     return redirect(reverse('milk_app:home'))
 
 @login_required

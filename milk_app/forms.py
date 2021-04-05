@@ -60,6 +60,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('account',)  
         exclude = ('picture',)
 
+
 class ListingForm(forms.ModelForm):
 
     

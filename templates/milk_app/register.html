@@ -11,7 +11,9 @@
 
 {% if registered %}
 <strong>You have been successfully registered!</strong>
-<a href="{% url 'milk_app:home' %}">Return to the homepage.</a><br />
+
+
+<a href="{% url 'milk_app:profile'%}">Check out your profile</a><br />
 {% else %}
 
 <div class="text-center">
@@ -21,7 +23,7 @@
         {{ user_form|crispy }}
         {{ profile_form|crispy }}
 
-        <button class = 'btn btn-outline-light btn-lg' type="submit" name="submit" > Register </button>
+        <button class = 'btn btn-outline-dark btn-lg' type="submit" name="submit" > Register </button>
     </form>
 </div>
 {% endif %}
