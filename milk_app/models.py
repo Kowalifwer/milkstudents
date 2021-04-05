@@ -84,7 +84,7 @@ class Listing(models.Model):
     ratingTotal = models.IntegerField(default = 0)
     ratingCount = models.IntegerField(default = 0)
     ratingCurrent = models.DecimalField(default = 0.00, decimal_places= 2, max_digits= 4)
-    ##
+    ###
 
     picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
     date = models.DateField(default = datetime.date.today, editable = True)

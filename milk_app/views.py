@@ -168,9 +168,6 @@ def rate_listing(request, listing_id_slug): #know for a fact its tenant
     listing = Listing.objects.get(slug = listing_id_slug)
 
     submitted_rating = request.POST.get('star')
-    print(submitted_rating)
-    print(submitted_rating)
-    print(submitted_rating)
 
     #increment count by 1
     listing.ratingCount = listing.ratingCount + 1

@@ -75,8 +75,13 @@
                     <li class="nav-item">
                         {% for message in messages %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-                        <a class="nav-link" href="#">{{ message }}</a>
+                        <a class="nav-link" id = "status" href="#">{{ message }}</a>
+                        <script> 
+                            setTimeout(()=>{document.getElementById("status").remove()}, 5000)
+                            setInterval(()=>{e = document.getElementById("status"); e.style.color=e.style.color == "green"? "white":"green"}, 200)
+                        </script>
                         {% endfor %}
+
                 </ul>
                 </li>
                 {% endif %}
