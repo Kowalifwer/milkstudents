@@ -33,12 +33,9 @@
 
         <!-- NAVIGATION -->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
 
@@ -97,8 +94,10 @@
                 <div class="col-md-4 text-center my-auto">
                     <img src="{% static 'images/logo.jpg' %}">
                     <p class="mb-4">
-                        Worked on this project over the couple of last weeks in a team of mostly two people. All commits for now (73 commits on 5th 
-                        of April 2021) are between 2 people - Artem and Oliver. Hopefully it helps finding you the student accomodation you want and 
+                        Worked on this project over the couple of last weeks in a team of mostly two people. All commits
+                        for now (73 commits on 5th
+                        of April 2021) are between 2 people - Artem and Oliver. Hopefully it helps finding you the
+                        student accomodation you want and
                         you really deserve!</p>
                 </div>
 
@@ -109,19 +108,24 @@
                     <h1>Authors:</h1><br>
 
                     <h3>Artem Grechushkin</h3>
-                    <a href="https://github.com/Kowalifwer">github<img src="{% static 'images/github.svg' %}"></a>, <a href="https://www.instagram.com/artgrech/">instagram<img src="{% static 'images/instagram.png' %}"></a>
+                    <a href="https://github.com/Kowalifwer">github<img src="{% static 'images/github.svg' %}"></a>, <a
+                        href="https://www.instagram.com/artgrech/">instagram<img
+                            src="{% static 'images/instagram.png' %}"></a>
                     <br>
                     <h3>Oliver Alan Štafurik</h3>
-                    <a href="https://github.com/stafino">github<img src="{% static 'images/github.svg' %}"></a>, <a href="https://www.instagram.com/oliverstafurik/">instagram<img src="{% static 'images/instagram.png' %}"></a>
+                    <a href="https://github.com/stafino">github<img src="{% static 'images/github.svg' %}"></a>, <a
+                        href="https://www.instagram.com/oliverstafurik/">instagram<img
+                            src="{% static 'images/instagram.png' %}"></a>
                     <br>
-                    <p class="mini">Gunraj Gulati</p> <br> 
-                    <p class="mini-mini">Xiao Luo</p> <!-- the thing is Xiao did absolutely nothing. We haven't heard from her since the design spec and even back then she was with us for like 12 minutes before deadline no more. -->
+                    <p class="mini">Gunraj Gulati</p> <br>
+                    <p class="mini-mini">Xiao Luo</p>
+                    <!-- the thing is Xiao did absolutely nothing. We haven't heard from her since the design spec and even back then she was with us for like 12 minutes before deadline no more. -->
                 </div>
 
                 <div class="col-md-4 text-center">
                     <p>
                         <span class="icon-room d-block h4 text-primary"></span>
-                        <h3>Based in Glasgow, United Kingdom </h3>
+                    <h3>Based in Glasgow, United Kingdom </h3>
                     </p>
                     <iframe
                         src="https://maps.google.com/maps?q=University%20of%20Glasgow%20Glasgow%20G12%208QQ,%20United%20Kingdom&t=&z=13&ie=UTF8&iwloc=&output=embed"
@@ -180,6 +184,17 @@
         var scroll = new SmoothScroll('a[href*="#"]', {
             speed: 1500,
             speedAsDuration: true
+        });
+    </script>
+
+    <!-- script for scalable carousel captions weeee -->
+    <script>
+        $(document).ready(function () {
+            $('.carousel .carousel-caption').css('zoom', $('.carousel').width() / 1250);
+        });
+
+        $(window).resize(function () {
+            $('.carousel .carousel-caption').css('zoom', $('.carousel').width() / 1250);
         });
     </script>
 

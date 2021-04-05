@@ -16,9 +16,9 @@ Homepage
             <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
         </ol>
-        <!-- Slide number 1 -->
+        
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
+            <div class="carousel-item active"> <!-- Slide number 1 -->
                 <img class="d-block img-fluid" src="{% static 'images/house2.jpg' %}" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h1>welcome to milkstudents</h1>
@@ -27,8 +27,8 @@ Homepage
                 </div>
             </div>
 
-            <!-- Slide number 2 -->
-            <div class="carousel-item">
+            
+            <div class="carousel-item"> <!-- Slide number 2 -->
                 <img class="d-block img-fluid" src="{% static 'images/house1.jpg' %}" alt="Second slide">
                 <div class="carousel-caption text-center">
                     <h1>Made possible by a small group of people</h1>
@@ -38,11 +38,11 @@ Homepage
             </div>
 
             <!-- Slide number 3 --- IF USER IS LOGGED IN he gets redirected if he wishes to, the function scrolls to functions that are available to him -->
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated %}  <!-- Slide number 3 --- if user is authenticated -->
             <div class="carousel-item">
                 <img class="d-block img-fluid" src="{% static 'images/house4.jpg' %}"
                     alt="Third slide if not authenticated">
-                <!-- Slide number 3 --- if user is authenticated -->
+                
                 <div class="carousel-caption text-center">
                     <h1>Discover more</h1>
                     <h3>there's plenty you can do</h3>
@@ -120,11 +120,10 @@ Homepage
 
 <!-- Start of the team section -->
 <section id="PhotoStrip" class="u-oh u-bg-white">
-    
+
 </section>
 
 <!-- End of the team section -->
-
 
 <div id="#cards-with-actions">
     <!-- Home page for Hosts -->

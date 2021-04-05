@@ -15,6 +15,10 @@ body  {
 
 /*-- Navbar styling --*/
 
+.navbar-inner {
+  background:transparent;
+}
+
 .navbar {
   text-transform: uppercase;
   font-weight: 700;
