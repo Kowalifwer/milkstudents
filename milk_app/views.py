@@ -140,7 +140,8 @@ def show_listing(request, listing_id_slug):
 
 @login_required
 def purchase_listing(request, listing_id_slug): #know for a fact its tenant
-    
+    # type = request.POST.get('paymentMethod')
+    # print(type)
     buyer = request.user.userprofile
 
     listing = Listing.objects.get(slug = listing_id_slug)
@@ -150,15 +151,39 @@ def purchase_listing(request, listing_id_slug): #know for a fact its tenant
     #listing.date = datetime.now
     listing.save()
     messages.success(request, 'Listing Purchased succesfully!')
+
     return redirect(reverse('milk_app:my_listings'))
 
 @login_required
 def remove_listing(request, listing_id_slug): #know for a fact its tenant
     #Delete the object from db completely
-    Listing.objects.filter(slug = listing_id_slug).delete()
+    Listing.objects.get(slug = listing_id_slug).delete()
 
     messages.success(request, 'Listing removed succesfully')
     return redirect(reverse('milk_app:my_listings'))
+
+@login_required
+def rate_listing(request, listing_id_slug): #know for a fact its tenant
+    
+    listing = Listing.objects.get(slug = listing_id_slug)
+
+    submitted_rating = request.POST.get('star')
+    print(submitted_rating)
+    print(submitted_rating)
+    print(submitted_rating)
+
+    #increment count by 1
+    listing.ratingCount = listing.ratingCount + 1
+    #update the total 
+    listing.ratingTotal = listing.ratingTotal + int(submitted_rating)
+    #update the actual
+    listing.ratingCurrent = (listing.ratingTotal / listing.ratingCount)
+
+    listing.save()
+
+    messages.success(request, 'Listing rated succesfully!')
+
+    return redirect(reverse('milk_app:browse_listings'))
 
 
 @login_required

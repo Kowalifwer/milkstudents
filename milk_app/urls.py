@@ -20,7 +20,10 @@ urlpatterns = [
     path('careers/', views.careers, name = "careers"),
     path('purchase/<slug:listing_id_slug>', views.purchase_listing, name = "purchase_listing"),
     path('remove/<slug:listing_id_slug>', views.remove_listing, name = "remove_listing"),
+    path('rate/<slug:listing_id_slug>', views.rate_listing, name = "rate_listing"),
+
     path ('profile/', views.user_profile, name = "profile"),
+
     #Registration
     path('logout/', views.user_logout, name='logout'),
     path('register/', views.register, name='register' ),

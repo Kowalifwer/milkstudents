@@ -58,6 +58,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
+
+
+
 def generate_filename_listing(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4().hex, ext)
@@ -68,13 +72,20 @@ class Listing(models.Model):
 
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
     
+
     listing_id = models.UUIDField(primary_key=True)
     
     name = models.CharField(max_length = 40)
     description = models.CharField(max_length= 500)
     price = models.IntegerField(null=True)
     address = models.CharField(max_length = 100)
-    rating = models.IntegerField(null=True)
+
+    ##Rating fields
+    ratingTotal = models.IntegerField(default = 0)
+    ratingCount = models.IntegerField(default = 0)
+    ratingCurrent = models.DecimalField(default = 0.00, decimal_places= 2, max_digits= 4)
+    ##
+
     picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
     date = models.DateField(default = datetime.date.today, editable = True)
     university = models.CharField(max_length= 40)
@@ -91,5 +102,4 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.name
-
 
