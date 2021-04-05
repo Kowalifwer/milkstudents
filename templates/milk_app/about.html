@@ -10,9 +10,39 @@
 {% endblock %}
 
 {% block body_block %}
+<section id="background-photo">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img class="d-block w-100" src="{% static 'images/about-us1.jpg' %}" alt="background photo for about page">
+            <div class="carousel-caption d-none d-md-block">
+                <h1>learn more about us</h1>
+                <h3>technologies used: </h3>
+                <a class="btn btn-outline-light btn-lg" href="#language-used" role="button">see more</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section id="language-used">
-    <h1>This app was made based on the following technologies:</h1>
+    <div class="services-section container py-7" style="opacity: 1;">
+        <div class="parallax-pad-5">
+            <div class="row mb-5">
+                <div class="col-md-10 w-50 mx-auto">
+                    <div data-parallax-offset="2" class="parallax-anim" style="transform: translateY(-28px);">
+                        <p class="service-title1 text-bold text-uppercase">
+                            How we did it
+                        </p>
+                    </div>
+                    <div data-parallax-offset="1.5" class="parallax-anim" style="transform: translateY(-36px);">
+                        <h2 class="service-text1" style="opacity: 1; transform: translateY(0px);">
+                            This app was made based on the following technologies:
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="about-language">

@@ -37,6 +37,14 @@ body  {
   color: #1ebba3;
 }
 
+/*-- technologies used --- ABOUT SECTION --*/
+
+#language-used  {
+  text-align: center;
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
 /*-- Created by section --*/
 
 #created-by {
