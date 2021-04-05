@@ -75,13 +75,13 @@
                     {% endif %}
                     {% if messages %}
                     <li class="nav-item">
-                            {% for message in messages %}
-                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-                                <a class="nav-link" href="#">{{ message }}</a>  
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    {% endif %}
+                        {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        <a class="nav-link" href="#">{{ message }}</a>
+                        {% endfor %}
+                </ul>
+                </li>
+                {% endif %}
                 </ul>
             </div>
         </nav>
@@ -89,60 +89,48 @@
 
     {% block body_block %}{% endblock %}
 
-    <!-- Start of the contact section -->
-    <!-- <div id="contact" class="offset">
-        footer
-        <footer class="page-footer bg-dark">
+    <footer class="page-footer bg-dark">
+        <div class="container offset">
             <div class="row justify-content-center">
-                <div class="col-md-5">
+
+                <div class="col-md-4 text-center my-auto">
                     <img src="{% static 'images/logo.jpg' %}">
-                    <p>Worked on this project over the couple of last weeks in a team of two people. Hopefully it helps
-                        finding you the student accomodation you really deserve!</p>
-                    <strong>Made possible by:</strong><br>
-                    <a href = "https://github.com/Kowalifwer">Artem Grechushkin</a><br><a href = "https://github.com/stafino">Oliver Alan Štafurik</a>
+                    <p class="mb-4">
+                        Worked on this project over the couple of last weeks in a team of mostly two people. All commits for now (73 commits on 5th 
+                        of April 2021) are between 2 people - Artem and Oliver. Hopefully it helps finding you the student accomodation you want and 
+                        you really deserve!</p>
                 </div>
+
+                <div class="col-md-4 text-center">
+                    <p class="mb-4">
+                        <span class="icon-phone d-block h4 text-primary"></span>
+                    </p>
+                    <h1>Authors:</h1><br>
+
+                    <h3>Artem Grechushkin</h3>
+                    <a href="https://github.com/Kowalifwer">github<img src="{% static 'images/github.svg' %}"></a>, <a href="https://www.instagram.com/artgrech/">instagram<img src="{% static 'images/instagram.png' %}"></a>
+                    <br>
+                    <h3>Oliver Alan Štafurik</h3>
+                    <a href="https://github.com/stafino">github<img src="{% static 'images/github.svg' %}"></a>, <a href="https://www.instagram.com/oliverstafurik/">instagram<img src="{% static 'images/instagram.png' %}"></a>
+                    <br>
+                    <p class="mini">Gunraj Gulati</p> <br> 
+                    <p class="mini-mini">Xiao Luo</p> <!-- the thing is Xiao did absolutely nothing. We haven't heard from her since the design spec and even back then she was with us for like 12 minutes before deadline no more. -->
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <p>
+                        <span class="icon-room d-block h4 text-primary"></span>
+                        <h3>Based in Glasgow, United Kingdom </h3>
+                    </p>
+                    <iframe
+                        src="https://maps.google.com/maps?q=University%20of%20Glasgow%20Glasgow%20G12%208QQ,%20United%20Kingdom&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="330" height="200" frameborder="0" style="border:0;margin-top:-27px;height: 250px;"
+                        allowfullscreen=""></iframe>
+                </div>
+
             </div>
-        </footer>
-    </div> -->
-
-    <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-
-          </div>
         </div>
-        <div class="row">
-          
-          <div class="col-md-4 text-center">
-            <p>
-              <span class="icon-room d-block h4 text-primary"></span>
-              <span class="h5 text-primary"> Glasgow, United Kingdom</span><br><br>   
-            </p>
-            <iframe src="https://maps.google.com/maps?q=University%20of%20Glasgow%20Glasgow%20G12%208QQ,%20United%20Kingdom&t=&z=13&ie=UTF8&iwloc=&output=embed" width="330" height="200" frameborder="0" style="border:0;margin-top:-27px;height: 250px;" allowfullscreen=""></iframe>
-          </div>
-          <div class="col-md-4 text-center">
-            <p class="mb-4">
-              <span class="icon-phone d-block h4 text-primary"></span>
-              </p><p class="h5 text-primary">Made by:</p>
-              <br>
-              
-              <p>Oliver Alan Štafurik</p>
-              <a href="#">github</a>
-            <br>
-             <p>Artem Grechushkin</p>
-              <a href="#">github</a>
-              <br>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <p class="mb-4">
-                <img src="{% static 'images/logo.jpg' %}">
-                    <p>Worked on this project over the couple of last weeks in a team of two people. Hopefully it helps
-                        finding you the student accomodation you really deserve!</p>
-          </div>
-        </div>
-      </div>
-
+    </footer>
 
 
     </div>
@@ -151,7 +139,9 @@
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
