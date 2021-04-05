@@ -14,7 +14,7 @@
 
 <!-- https://bootstrapious.com/p/bootstrap-profile-page -->
 
-<div class="row py-5 px-">
+<div class="row py-5 px-2">
     <div class="col-xl-10 col-md-6 col-sm-10 mx-auto">
 
         <!-- Profile widget -->
@@ -29,12 +29,14 @@
                     {% endif %}
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-0">Greetings {{user.username}}</h4>
-                        <p class="small mb-3"> Role: {{user.userprofile.account}}</p>
+                        <p class="small mb-2"> E-mail: {{user.email}}</p>
+                        <p class="small mb-2"> Role: {{user.userprofile.account}}</p>
+                        
                     </div>
                 </div>
             </div>
 
-            <div class="bg-light p-4 d-flex justify-content-end text-center">
+            <div class="bg-light p-4 d-flex justify-content-center text-center">
                 <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:profile' %}">
             
                     {%csrf_token%}

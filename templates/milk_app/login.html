@@ -8,15 +8,20 @@
 
 {% block body_block %}
 <h1>Login to MilkStudents</h1>
+
+
+
+<div class="text-center">
     
-    
+    <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="72" height="72">
     <form id="login_form" method="post" action="{% url 'milk_app:login' %}">
         {% csrf_token %}
         
         {{ login_form|crispy }}
 
-        <button type="submit" name="submit"> Log in </button>
+        <button class = "btn btn-outline-dark btn-lg" type="submit" name="submit"> Log in </button>
     </form>
+</div>
 
 <!-- <style>
     #login_form input {

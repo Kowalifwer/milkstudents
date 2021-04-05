@@ -97,7 +97,8 @@ footer img  {
   object-fit: cover
 }
 
-form {
+
+#login_form {
   display: block;
   margin: auto;
   width: 50%;
