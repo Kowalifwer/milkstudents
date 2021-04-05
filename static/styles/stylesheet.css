@@ -64,9 +64,14 @@ section  {
   height: 100vh; 
 }
 
+
+.btn  {
+  margin-bottom: 1vh;
+}
+
 .carousel-caption {
   position: absolute;
-  top: 38%;
+  top: 32%;
   text-transform: uppercase;
   width: 100%;
   right: 0;
