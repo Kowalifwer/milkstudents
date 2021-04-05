@@ -14,13 +14,16 @@
 <a href="{% url 'milk_app:home' %}">Return to the homepage.</a><br />
 {% else %}
 
-<form id="user_form" method="post" action="{% url 'milk_app:register' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ user_form|crispy }}
-    {{ profile_form|crispy }}
+<div class="text-center">
+    <img class="mb-4" src="{% static 'images/logo.jpg' %}" alt="" width="72" height="72">
+    <form id="user_form" method="post" action="{% url 'milk_app:register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form|crispy }}
+        {{ profile_form|crispy }}
 
-    <button class = 'btn btn-outline-light btn-lg' type="submit" name="submit" > Register </button>
-</form>
+        <button class = 'btn btn-outline-light btn-lg' type="submit" name="submit" > Register </button>
+    </form>
+</div>
 {% endif %}
 
 {% endblock %}
