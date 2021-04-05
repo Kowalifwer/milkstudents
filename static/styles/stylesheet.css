@@ -24,10 +24,6 @@ body  {
   background: rgba(0,0,0,.6)!important;
 }
 
-.navbar-brand img{
-  height: 2rem;
-}
-
 .navbar-nav li {
   padding-right: .7rem;
 }
@@ -39,6 +35,22 @@ body  {
 .navbar-dark .navbar-nav .navbar-link.active,
 .navbar-dark .navbar-nav .navbar-link:hover {
   color: #1ebba3;
+}
+
+/*-- Created by section --*/
+
+#created-by {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.parallax-pad-5 {
+  padding-top:5%;
+}
+
+.services-section .heading  {
+  margin-bottom:20px;
+  --headingSize:30px;
 }
 
 /*-- Slider --*/
@@ -75,9 +87,9 @@ body  {
 footer  {
   background-color: #40474e;
   color: white;
-  padding-top: 2rem;
-  padding-bottom: 3rem;
-  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
@@ -87,6 +99,12 @@ footer img  {
 }
 
 /*-- Cards ---*/
+
+.card-body  {
+  text-align: center;
+  color: #333;
+
+}
 
 .card-img-top {
   max-height:160px; 
