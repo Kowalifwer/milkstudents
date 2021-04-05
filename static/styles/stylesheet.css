@@ -212,6 +212,14 @@ footer img  {
   max-width: 100%;
 }
 
+#search_field {
+  display: block;
+  margin: auto;
+  width: 30%;
+  padding: 2px;
+  min-width: 250px;
+  max-width: 100%;
+}
 /* button {
   background-color: rgb(106, 119, 123);
   border-radius: 4px;
