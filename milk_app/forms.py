@@ -65,7 +65,7 @@ class ListingForm(forms.ModelForm):
 
     
     name = forms.CharField(max_length = 40, widget = forms.TextInput(attrs = {'placeholder' : 'Name your listing'}), label= "Listing name")
-    description = forms.CharField(max_length= 500, widget = forms.TextInput(attrs = {'placeholder' : 'Describe your listing'}), label = "Description")
+    description = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'placeholder' : 'Describe your listing'}), label = "Description")
     #price = forms.IntegerField(widget=forms.HiddenInput(),required = False)
     address = forms.CharField(max_length = 100, widget = forms.TextInput(attrs = {'placeholder' : 'Apparment, studio, or floor'}))
     university = forms.CharField(max_length= 40, widget = forms.TextInput(attrs = {'placeholder' : 'Which Univeristy is the lisiting relevant to'}), label = "Univeristy name")
@@ -99,7 +99,7 @@ class UserProfileUpdateForm(forms.ModelForm):
 
 class UpdateListingForm(forms.ModelForm):
     name = forms.CharField(max_length = 40, widget = forms.TextInput(attrs = {'placeholder' : 'Enter a new name for your listing'}), label= "Listing name", required= True)
-    description = forms.CharField(max_length= 500, widget = forms.TextInput(attrs = {'placeholder' : 'Enter a new description'}), label = "Description", required = True)
+    description = forms.CharField(max_length= 500, widget = forms.Textarea(attrs = {'placeholder' : 'Describe your listing'}), label = "Description")
     picture = forms.ImageField(widget=forms.FileInput, label = "Update the listing's image", error_messages = {'invalid':("Image files only")}, required = False)
 
     class Meta:

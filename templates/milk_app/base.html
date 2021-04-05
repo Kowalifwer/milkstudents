@@ -70,7 +70,16 @@
                     </li>
                     <li class="nav-item">
                         <!-- Log in if user not authenticated reference-->
-                        <a class="nav-link" href="{% url 'milk_app:login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'milk_app:login' %}">{{ message }}</a>
+                    </li>
+                    {% endif %}
+                    {% if messages %}
+                    <li class="nav-item">
+                            {% for message in messages %}
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                                <a class="nav-link" href="#">{{ message }}</a>  
+                            {% endfor %}
+                        </ul>
                     </li>
                     {% endif %}
                 </ul>
@@ -89,8 +98,8 @@
                     <img src="{% static 'images/logo.jpg' %}">
                     <p>Worked on this project over the couple of last weeks in a team of two people. Hopefully it helps
                         finding you the student accomodation you really deserve!</p>
-                    <strong>Made possible by:</strong>
-                    <p>Artem Grechushkin<br>Oliver Alan Štafurik</p>
+                    <strong>Made possible by:</strong><br>
+                    <a href = "https://github.com/Kowalifwer">Artem Grechushkin</a><br><a href = "https://github.com/stafino">Oliver Alan Štafurik</a>
                 </div>
             </div>
         </footer>

@@ -105,7 +105,7 @@ def user_login(request):
 
 def show_listing(request, listing_id_slug):
     update_form = UpdateListingForm()
-
+    
     context_dict = {}
 
     try:
@@ -133,11 +133,6 @@ def show_listing(request, listing_id_slug):
 
     except Listing.DoesNotExist:
         context_dict['listing'] = None
-   
-    
-
-    if request.user.is_authenticated: #if current user is authenticated - send in their role to context dict.
-        context_dict['current_user'] = request.user.userprofile
 
     return render(request, 'milk_app/listing.html', context = context_dict)
 
@@ -154,7 +149,7 @@ def purchase_listing(request, listing_id_slug): #know for a fact its tenant
     #update date
     listing.date = datetime.datetime.now()
     listing.save()
-
+    messages.success(request, 'Listing Purchased succesfully!')
     return redirect(reverse('milk_app:my_listings'))
 
 @login_required
@@ -162,6 +157,7 @@ def remove_listing(request, listing_id_slug): #know for a fact its tenant
     #Delete the object from db completely
     Listing.objects.filter(slug = listing_id_slug).delete()
 
+    messages.success(request, 'Listing removed succesfully')
     return redirect(reverse('milk_app:my_listings'))
 
 
@@ -180,6 +176,7 @@ def add_listing(request):
             listing.listing_id = uuid.uuid4().hex
             listing.save()
 
+            messages.success(request, 'Listing added succesfully')
             return redirect(reverse('milk_app:my_listings'))
         else:
             print(form.errors)
@@ -236,6 +233,7 @@ def user_profile(request):
     if p_form.is_valid() and u_form.is_valid():
         u_form.save(commit = True)
         p_form.save(commit = True)
+        messages.success(request, 'Profile updated succesfully!')
         return redirect(reverse('milk_app:profile'))
     
     else:
@@ -258,18 +256,3 @@ def user_logout(request):
     messages.success(request, 'Logged out Succesfully!')
 
     return redirect(reverse('milk_app:home'))
-
-@login_required
-def register_profile(request):
-    form = UserProfileForm()
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            user_profile = form.save(commit=False)
-            user_profile.user = request.user
-            user_profile.save()
-            return redirect(reverse('milk_app:home'))
-    else:
-        print(form.errors)
-    context_dict = {'form': form}
-    return render(request, 'milk_app/profile_registration.html', context_dict)

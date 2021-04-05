@@ -16,8 +16,6 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
 
-
-
 $(function () {
     $('[data-toggle="popover"]').popover()
         })

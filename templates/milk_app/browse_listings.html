@@ -11,49 +11,50 @@
 {% endblock %}
 
 {% block body_block %}
-<br><br>    
-    <section >
+<br><br>
+<h1 class="top-space-heading">Browse all available accomododation</h1>
 
-        <div>
-            
-            {% if not searched %}
-                    <p>Popular listings:</p>
-                {% else %}
-                    <p>Listings relevant to your search: '{{search}}'</p>
-            {% endif %}
-
-            {% if listings %}
-                       
-                
-                {% for l in listings  %}
-                    <li>
-                        <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }} - </a> {{l.university}} 
-                        
-                        <!-- {% if l.picture %}
-                            <img src = "/media/{{l.picture}}" height = "10%" width= "10%"> Click </img>
-                        {% endif %} -->
-                            
-       
-                    </strong></li>
-                {% endfor %}
-                
-       
-            {% else %}       
-                <p> No Relevant listings available</p>
-
-            {% endif %}
-            
-            Would you like to search for a listing near a specific university? ?
-            <form action = "{% url 'milk_app:browse_listings'%}" method = "post">
-                {% csrf_token %}
-                <label for="search">University name: </label>
-                <input id="search" type="text" name="search" value="{{ search }}">
-                <input type="submit" value="OK">
-            </form>
-            
-        </div>
+    <div class="text-center">
         
-    </section>
+        {% if not searched %}
+                <h4>Popular listings:</h4>
+            {% else %}
+                <h4>Listings relevant to your search: '{{search}}'</h4>
+        {% endif %}
+
+        {% if listings %}
+                    
+            
+            {% for l in listings  %}
+                <li>
+                    <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }} - </a> {{l.university}} 
+                    
+                    <!-- {% if l.picture %}
+                        <img src = "/media/{{l.picture}}" height = "10%" width= "10%"> Click </img>
+                    {% endif %} -->
+                        
+    
+                </strong></li>
+            {% endfor %}
+            
+    
+        {% else %}       
+            <h2> No Relevant listings available</h2>
+
+        {% endif %}
+        <br><br><br><br><br>
+        Would you like to search for a listing near a specific university?
+        <form id = "search" action = "{% url 'milk_app:browse_listings'%}" method = "post">
+            {% csrf_token %}
+            <label for="search"> University name: </label>
+            <input id="search_field" type="text" name="search" value="{{ search }}" placeholder="eg. University of Glasgow">
+            <br>
+            <button class = "btn btn-outline-dark btn-sm" type="submit"> Search! </button>
+        </form>
+        
+    </div>
+        
+    
     
 {% endblock %}
 
