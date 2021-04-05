@@ -11,19 +11,16 @@
 {% endblock %}
 
 {% block body_block %}
+<br><br><br>
+<div class="text-center"></div>
+    <form  id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">  
+        {% csrf_token %}
 
-<div class="jumbotron p-2" style = "width: 22rem;">
-    <div class="container padding-4">
-        <form  id="listing_form" method="post" action="{% url 'milk_app:add_listing' %}" enctype="multipart/form-data">  
-            {% csrf_token %}
+        {{ listing_form|crispy }}
 
-            {{ listing_form|crispy }}
-
-            <button class = "btn btn-outline-light btn-lg" type="submit" name="submit"> Create listing </button>
-        </form>
-
-
-    </div>
-
+        <button class = "btn btn-outline-dark btn-lg" type="submit" name="submit"> Create listing </button>
+    </form>
 </div>
+
+
 {% endblock %}

@@ -15,21 +15,18 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-2" style = "width: 22rem;">
-    <div class="container padding-4">
-        <div h1 class="jumbotron-heading">
-            
-        </div>
-        <p style = "font-family: cursive; ">
-            <span style="color: cornflowerblue;">
+
+<div class="jumbotron">
+    <div class="text-center">
+        <h1 class="display-4">You're vieweing listing: {{ listing.name }}</h1>
             {% if listing %}
-                {{ listing.name }} in {{listing.university}}
-
-                <!-- What everyone sees -->
-                <p>Address: {{listing.address}}</p>
-                <p>Rating: {{listing.rating}}</p>
-                <p>Owner: {{owner_info.user.username}}</p>
-
+            <!-- What everyone sees -->
+            <h2 class="display-6"> Univeristy:  {{ listing.univeristy }}</h2>
+            <h2 class="display-10">Address: {{listing.address}}</h2>
+            <h2 class="display-10">Rating: {{listing.rating}}</h2>
+            <h2 class="display-10">Owner: {{owner_info.user.username}}</h2>
+            
+                
                 {% if listing.picture %}
                     <img src = "/media/{{listing.picture}}" height = "10%" width= "10%"></img>
                 {% endif %}
@@ -38,53 +35,49 @@
                 <!-- Logic behind How listing should look for Host/tenant -->
                 <!-- If you are a Tenant and it is not your listing -->
                 {% if user.userprofile.account == 'Tenant' and owner_info.user.username != user.userprofile.user.username %} 
-                <p>Date added: {{listing.date}}</p>
+                <h2 class="display-10">Date added: {{listing.date}}</h2>
                 <form action = "{% url 'milk_app:purchase_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
                     <button class = "btn btn-outline-light btn-lg" type = 'submit'> Rent Listing</button>
                 </form>
                 <!-- If you are tenant and it is your listing -->
                 {% elif user.userprofile.account == 'Tenant' and owner_info.user.username == user.userprofile.user.username %}
-                <p>Date purchased: {{listing.date}}</p>
+                <h2 class="display-10">Date Purchased: {{listing.date}}</h2>
 
                 <!-- If you are a Host view -->
                 {% elif user.userprofile.account == 'Host' and owner_info.user.username == user.userprofile.user.username %}
-                <p>Date added: {{listing.date}}</p>
+                <h2 class="display-10">Date added: {{listing.date}}</h2>
                 
                 <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
-                    <button class = "btn btn-outline-light btn-lg" type = 'submit'> Remove Listing</button>
+                    <button class = "btn btn-outline-dark btn-lg" type = 'submit'> Remove Listing</button>
                 </form>
 
 
 
-                <div> <button class = "btn btn-outline-light btn-lg" type="button" id="formButton"> Update Listing </button></div> 
+                <div> <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton"> Update Listing </button></div> 
 
                 <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:show_listing' listing.slug %} ">
                     {%csrf_token%}
 
                     {{updated_listing|crispy}}
 
-                    <button class = "btn btn-outline-light btn-lg" type='submit' name = 'submit'>Confirm Changes</button>
+                    <button class = "btn btn-outline-dark btn-lg" type='submit' name = 'submit'>Confirm Changes</button>
                 </form>
 
                 
                 <!-- If not authenticated -->
                 {% else %}
-                <p>Date added: {{listing.date}}</p>
+
+                <h2 class="display-10">Date added: {{listing.date}}</h2>
 
                 {% endif %}
 
-            {% else %}
+                {% else %}
                 Listing does not exist.
             
                 {% endif %}
             
-            
-            </span>
- 
-        </p>
     </div>
-
 </div>
 {% endblock %}
