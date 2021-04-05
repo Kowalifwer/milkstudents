@@ -49,7 +49,7 @@ body  {
 
 #created-by {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 150px;
   margin-top: -50px;
 }
 
@@ -156,18 +156,36 @@ footer img  {
   margin: 1.5rem 0;
 }
 
+.page-footer a img  {
+  width: 20px;
+  height: 20px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+footer iframe {
+  padding-top: 30px;
+}
+
+.mini {
+  font-size: 7px;
+}
+
+.mini-mini  {
+  font-size: 2px;
+}
+
 /*-- Cards --*/
 
 .card-body  {
   text-align: center;
   color: #333;
-
 }
 
 .card-img-top {
-  max-height:160px; 
-  min-height:160px;
-  object-fit: cover
+  max-height:350px; 
+  min-height:350px;
+  object-fit: cover;
 }
 
 .top-space-heading  {
