@@ -8,7 +8,7 @@ Homepage
 {% endblock %}
 
 {% block body_block %}
-<div id="body-and-carousel">
+<section id="body-and-carousel">
     <!-- Start of the image slider -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="7000">
         <ol class="carousel-indicators">
@@ -92,15 +92,15 @@ Homepage
     </a>
     <!-- End of the image slider -->
     <!-- End of the home section -->
-</div>
+</section>
 
 
 <!-- Start of the team section -->
-<section id="created-by" class="offset-md-1">
+<section id="created-by" class="">
     <div class="services-section container py-7" style="opacity: 1;">
         <div class="parallax-pad-5">
             <div class="row mb-5">
-                <div class="col-md-10">
+                <div class="col-md-10 w-50 mx-auto">
                     <div data-parallax-offset="2" class="parallax-anim" style="transform: translateY(-28px);">
                         <p class="service-title1 text-bold text-uppercase">
                             What we do
@@ -118,6 +118,7 @@ Homepage
     </div>
 </section>
 
+<!-- Start of the team section -->
 <section id="PhotoStrip" class="u-oh u-bg-white">
     
 </section>
@@ -235,7 +236,6 @@ Homepage
             </div>
         </div>
     </div>
+
     {% endif %}
-
-
     {% endblock %}

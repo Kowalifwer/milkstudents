@@ -40,8 +40,9 @@ body  {
 /*-- Created by section --*/
 
 #created-by {
-  margin-top: 6rem;
   text-align: center;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 
 .parallax-pad-5 {
@@ -54,6 +55,10 @@ body  {
 }
 
 /*-- Slider --*/
+
+section  {
+  margin-bottom: 8rem;
+}
 
 .carousel-item  {
   height: 100vh; 
