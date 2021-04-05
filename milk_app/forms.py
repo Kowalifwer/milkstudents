@@ -105,4 +105,3 @@ class UpdateListingForm(forms.ModelForm):
     class Meta:
         model = Listing
         fields = ('name', 'description', 'picture', )    
-

@@ -164,6 +164,7 @@ def remove_listing(request, listing_id_slug): #know for a fact its tenant
 
     return redirect(reverse('milk_app:my_listings'))
 
+
 @login_required
 def add_listing(request):
     form = ListingForm()
@@ -247,8 +248,8 @@ def user_profile(request):
     context_dict['u_form'] = u_form
 
 
-    response = render(request, 'milk_app/profile.html',context = context_dict)
-    return response
+    return render(request, 'milk_app/profile.html',context = context_dict)
+
 
 @login_required
 def user_logout(request):

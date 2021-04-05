@@ -21,11 +21,10 @@
         <h1 class="display-4">You're vieweing listing: {{ listing.name }}</h1>
             {% if listing %}
             <!-- What everyone sees -->
-            <h2 class="display-6"> Univeristy:  {{ listing.univeristy }}</h2>
             <h2 class="display-10">Address: {{listing.address}}</h2>
+            <h2 class="display-6"> Univeristy:  {{ listing.university }}</h2>
             <h2 class="display-10">Rating: {{listing.rating}}</h2>
             <h2 class="display-10">Owner: {{owner_info.user.username}}</h2>
-            
                 
                 {% if listing.picture %}
                     <img src = "/media/{{listing.picture}}" height = "10%" width= "10%"></img>
