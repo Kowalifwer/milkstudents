@@ -256,18 +256,3 @@ def user_logout(request):
     messages.success(request, 'Logged out Succesfully!')
 
     return redirect(reverse('milk_app:home'))
-
-@login_required
-def register_profile(request):
-    form = UserProfileForm()
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            user_profile = form.save(commit=False)
-            user_profile.user = request.user
-            user_profile.save()
-            return redirect(reverse('milk_app:home'))
-    else:
-        print(form.errors)
-    context_dict = {'form': form}
-    return render(request, 'milk_app/profile_registration.html', context_dict)
