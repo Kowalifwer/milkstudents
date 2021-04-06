@@ -9,8 +9,8 @@ import datetime
 
 
 def generate_filename_userpic(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4().hex, ext)
+    part = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4().hex, part)
     return os.path.join('profile_images', filename)
 
 class UserProfile(models.Model):
@@ -28,9 +28,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-def generate_filename_listing(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4().hex, ext)
+def generate_filename_listingpic(instance, filename):
+    part = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4().hex, part)
     return os.path.join('listing_images', filename)
 
 
@@ -54,7 +54,8 @@ class Listing(models.Model):
     ratingCurrent = models.DecimalField(default = 0.00, decimal_places= 2, max_digits= 4)
     ###
 
-    picture = models.ImageField(upload_to = generate_filename_listing, blank = False)
+    picture = models.ImageField(upload_to = generate_filename_listingpic, blank = False)  
+    
     date = models.DateField(default = datetime.date.today, editable = True)
     university = models.CharField(max_length= 40)
 
