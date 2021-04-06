@@ -36,8 +36,10 @@ def generate_filename_listing(instance, filename):
 
 class Listing(models.Model):
 
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE) #reference to user object
-    
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name= "userName") #reference to user object
+    ##Keep track of who purchased listing or cancelled their lease
+    userPrev = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null= True, blank = True, related_name= "userNamePrev" ) #reference to user object
+
 
     listing_id = models.UUIDField(primary_key=True)
     

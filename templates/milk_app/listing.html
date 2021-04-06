@@ -25,7 +25,14 @@
             <h2 class="display-6"> Univeristy:  {{ listing.university }}</h2>
             <h2 class="display-10">Rating: {{listing.ratingCurrent}} (based on: {{listing.ratingCount}} reviews)</h2>
             <h2 class="display-10">Price: £{{listing.price}} </h2>
-            <h2 class="display-10">Owner: {{owner_info.user.username}}</h2>
+            
+            {% if purchased %}
+              <h2 class="display-10">Owner: {{listing.userPrev.user.username}}</h2>
+            {% else %}
+              <h2 class="display-10">Owner: {{listing.user.user.username}}</h2>
+            {% endif %}
+              
+            
                 
                 {% if listing.picture %}
                     <img src = "/media/{{listing.picture}}" height = "10%" width= "10%"></img>
@@ -33,12 +40,9 @@
                 
                 
                 <!-- Logic behind How listing should look for Host/tenant -->
-                
-                    
-
-
+              
                 <!-- If you are a Tenant and it is not your listing -->
-                {% if user.userprofile.account == 'Tenant' and owner_info.user.username != user.username %} 
+                {% if user.userprofile.account == 'Tenant' and listing.user.user.username != user.username %} 
                 <h2 class="display-10">Date added: {{listing.date}}</h2>
 
                 <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton"> Purchase Listing </button>
@@ -149,44 +153,12 @@
                     <button class = "btn btn-outline-dark btn-lg" type = 'submit'> Confirm Purchase</button>
                 </form>
                 
-                <!-- If you are tenant and it is your listing -->
-                {% elif user.userprofile.account == 'Tenant' and owner_info.user.username == user.username %}
+                <!-- If you are tenant and it is your listing-->
+                {% elif user.userprofile.account == 'Tenant' and listing.user.user.username == user.username %}
                 <h2 class="display-10">Date Purchased: {{listing.date}}</h2>
 
-                <!-- If you are a Host and you own the property view -->
-                {% elif user.userprofile.account == 'Host' and owner_info.user.username == user.username %}
-                <h2 class="display-10">Date added: {{listing.date}}</h2>
                 
-                <div> 
-                    
-                <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
-                    {% csrf_token %}
-                    <button class = "btn btn-outline-dark btn-lg" type = 'submit'> Remove Listing </button>
-                </form>
-                    
-                <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton"> Update Listing </button></div> 
-
-                <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:show_listing' listing.slug %} ">
-                    {%csrf_token%}
-
-                    {{updated_listing|crispy}}
-
-                    <button class = "btn btn-outline-dark btn-lg" type='submit' name = 'submit'>Confirm Changes</button>
-                </form>
-
-                
-                <!-- If not authenticated -->
-                {% else %}
-
-                <h2 class="display-10">Date added: {{listing.date}}</h2>
-
-                {% endif %}
-                <!-- Rating -->
-                <!-- Everyone can rate except of host owner -->
-                
-                {% if user.is_authenticated %}
-                  {% if not user.userprofile.account == 'Host' or not owner_info.user.username == user.username %}
-                    <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton2"> Rate Listing </button>
+                <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton2"> Rate Listing </button>
                     
                     <form style = "display: none" id = "update_form2" action = "{% url 'milk_app:rate_listing' listing.slug %}" method = 'POST'> 
                         {% csrf_token %}
@@ -203,14 +175,68 @@
                         <button class = "btn btn-outline-dark btn-lg" type = 'submit'> Submit your rating!</button>
                         </div>
                     </form>
-                  {% endif %}
+                    
+                    <form action = "{% url 'milk_app:cancel_listing' listing.slug %}" method = 'POST'> 
+                      {% csrf_token %}
+                      <button class = "btn btn-danger btn-lg" type = 'submit'> Cancel your lease! </button>
+                    </form>
+    
+
+                <!-- If you are a Host and you own the property view (NOT SOLD YET) -->
+                {% elif user.userprofile.account == 'Host' and listing.user.user.username == user.username%}
+                <h2 class="display-10">This property is yet to be sold!</h2>
+                  <h2 class="display-10">Date added: {{listing.date}}</h2>
+                  
+                  <div> 
+                      
+                  <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
+                      {% csrf_token %}
+                      <button class = "btn btn-danger btn-lg" type = 'submit'> Remove Listing </button>
+                  </form>
+                      
+                  <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton"> Update Listing </button></div> 
+
+                  <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:show_listing' listing.slug %} ">
+                      {%csrf_token%}
+
+                      {{updated_listing|crispy}}
+
+                      <button class = "btn btn-outline-dark btn-lg" type='submit' name = 'submit'>Confirm Changes</button>
+                  </form>
+                  <!-- If you are a Host and you own the property view (SOLD) -->
+                {% elif user.userprofile.account == 'Host' and listing.userPrev.user.username == user.username%}  
+                  <h2 class="display-10">CURRENTLY BEING RENTED BY: {{listing.user.user.username}}</h2>
+                  <h2 class="display-10">Date added: {{listing.date}}</h2>
+                    
+                  <div> 
+                      
+                  <form action = "{% url 'milk_app:remove_listing' listing.slug %}" method = 'POST'> 
+                      {% csrf_token %}
+                      <button class = "btn btn-outline-dark btn-lg" type = 'submit'> Remove Listing </button>
+                  </form>
+                      
+                  <button class = "btn btn-outline-dark btn-lg" type="button" id="formButton"> Update Listing </button></div> 
+
+                  <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:show_listing' listing.slug %} ">
+                      {%csrf_token%}
+
+                      {{updated_listing|crispy}}
+
+                      <button class = "btn btn-outline-dark btn-lg" type='submit' name = 'submit'>Confirm Changes</button>
+                  </form>
+                
+
+                <!-- If not authenticated -->
+                {% else %}
+
+                <h2 class="display-10">Date added: {{listing.date}}</h2>
+
                 {% endif %}
 
-
-                {% else %}
+              {% else %}
                 Listing does not exist.
             
-                {% endif %}
+            {% endif %}
             
     </div>
 </div>

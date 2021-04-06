@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 import uuid
 from django.contrib import messages
-
+from django.db.models import Q
 domains = [".edu",".ac.uk",".ac.nz", ".student","@student"] 
 # Create your views here.
 # Homepage for starters - nothing interesting
@@ -107,10 +107,14 @@ def show_listing(request, listing_id_slug):
     update_form = UpdateListingForm()
     
     context_dict = {}
-
     try:
         #listing object reference
         listing = Listing.objects.get(slug = listing_id_slug)
+        
+        if listing.userPrev: ##IF THERE IS A SECOND USER - PURCHASE DID HAPPEN
+            context_dict['purchased'] = True
+        else: ##OTHERWISE THERE ISNT
+            context_dict['purchased'] = False
 
         ### UPDATE LISTING CODE ###
         if request.method == 'POST':
@@ -128,7 +132,6 @@ def show_listing(request, listing_id_slug):
         owner = listing.user #pass owner data into context dict
 
         context_dict['listing'] = listing
-        context_dict['owner_info'] = owner
         context_dict['updated_listing'] = update_form
 
     except Listing.DoesNotExist:
@@ -141,12 +144,17 @@ def show_listing(request, listing_id_slug):
 @login_required
 def purchase_listing(request, listing_id_slug): #know for a fact its tenant
     # type = request.POST.get('paymentMethod')
-    # print(type)
+
     buyer = request.user.userprofile
 
     listing = Listing.objects.get(slug = listing_id_slug)
+    #keep track of previous owner
+    listing.userPrev = listing.user
+
     #update the owner of the listing 
     listing.user = buyer
+
+    
     #update date
     #listing.date = datetime.now
     listing.save()
@@ -179,6 +187,24 @@ def rate_listing(request, listing_id_slug): #know for a fact its tenant
     listing.save()
 
     messages.success(request, 'Listing rated succesfully!')
+
+    return redirect(reverse('milk_app:browse_listings'))
+
+@login_required
+def cancel_listing(request, listing_id_slug): #know for a fact its tenant
+    
+    listing = Listing.objects.get(slug = listing_id_slug)
+
+    realOwner = listing.userPrev
+
+    #transfer ownership back to tenant
+    listing.user = realOwner
+    #set userprev to none since no more transfership needed
+    listing.userPrev = None
+
+    listing.save()
+
+    messages.success(request, 'Lease cancelled succesfully!')
 
     return redirect(reverse('milk_app:browse_listings'))
 
@@ -232,7 +258,7 @@ def my_listings(request):
     user_p = request.user.userprofile
     
     context_dict = {}
-    my_listings = Listing.objects.filter(user = user_p)
+    my_listings = Listing.objects.filter(Q(user = user_p) |Q(userPrev = user_p))
 
     context_dict['my_listings'] = my_listings
     context_dict['profile'] = user_p
