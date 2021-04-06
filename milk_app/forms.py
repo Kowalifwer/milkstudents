@@ -70,6 +70,8 @@ class ListingForm(forms.ModelForm):
     address = forms.CharField(max_length = 100, widget = forms.TextInput(attrs = {'placeholder' : 'Apparment, studio, or floor'}))
     university = forms.CharField(max_length= 40, widget = forms.TextInput(attrs = {'placeholder' : 'Which Univeristy is the lisiting relevant to'}), label = "Univeristy name")
     
+    price = forms.DecimalField(max_digits=6, decimal_places=2, widget = forms.TextInput(attrs = {'placeholder' : 'Price in £'}))
+    
     picture = forms.ImageField(label = 'Select a file')
     
     
@@ -77,8 +79,8 @@ class ListingForm(forms.ModelForm):
 
     class Meta:
         model = Listing
-        fields = ('name','description','address','university','picture')
-        exclude = ('user', 'rating', 'date', 'price', 'listing_id')
+        fields = ('name','description','address','university','price','picture')
+        exclude = ('user', 'rating', 'date', 'listing_id')
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(widget = forms.TextInput(attrs = {'placeholder' : 'Enter your Email'}))
@@ -104,4 +106,4 @@ class UpdateListingForm(forms.ModelForm):
 
     class Meta:
         model = Listing
-        fields = ('name', 'description', 'picture', )    
+        fields = ('name','price', 'description', 'picture',)    

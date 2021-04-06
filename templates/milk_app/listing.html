@@ -24,6 +24,7 @@
             <h2 class="display-10">Address: {{listing.address}}</h2>
             <h2 class="display-6"> Univeristy:  {{ listing.university }}</h2>
             <h2 class="display-10">Rating: {{listing.ratingCurrent}} (based on: {{listing.ratingCount}} reviews)</h2>
+            <h2 class="display-10">Price: £{{listing.price}} </h2>
             <h2 class="display-10">Owner: {{owner_info.user.username}}</h2>
                 
                 {% if listing.picture %}
@@ -44,6 +45,8 @@
                 
                 <form style = "display: none" id = "update_form" action = "{% url 'milk_app:purchase_listing' listing.slug %}" method = 'POST'> 
                     {% csrf_token %}
+                    
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                           <label for="firstName">First name</label>
@@ -141,6 +144,8 @@
                           </div>
                         </div>
                       </div>
+
+                    <h2 class="display-6"> Final Price: £{{listing.price}} </h2>
                     <button class = "btn btn-outline-dark btn-lg" type = 'submit'> Confirm Purchase</button>
                 </form>
                 

@@ -43,7 +43,7 @@ class Listing(models.Model):
     
     name = models.CharField(max_length = 40)
     description = models.CharField(max_length= 500)
-    price = models.IntegerField(null=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     address = models.CharField(max_length = 100)
 
     ##Rating fields
