@@ -50,7 +50,7 @@
                 <p> YOU HAVE NO LISTINGS</p>
 
                 {% if profile.account == 'Host' %}
-                <a href = {% url 'milk_app:add_listing' %}> Add a listing </a>
+                <a href = "{% url 'milk_app:add_listing' %}"> Add a listing </a>
                 {% endif %}
 
             {% endif %}
