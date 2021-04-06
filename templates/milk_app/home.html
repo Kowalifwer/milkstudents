@@ -46,7 +46,7 @@ Homepage
                 <div class="carousel-caption text-center">
                     <h1>Discover more</h1>
                     <h3>there's plenty you can do</h3>
-                    <a class="btn btn-outline-light btn-lg" href="#action" role="button">scroll down</a>
+                    <a class="btn btn-outline-light btn-lg" href="#possible-actions" role="button">scroll down</a>
                 </div>
             </div>
             {% else %}
@@ -57,10 +57,10 @@ Homepage
                 <div class="carousel-caption text-center">
                     <h1>Join our growing community of members!</h1>
                     <h3>Register if you don't have an account yet</h3>
-                    <a class="btn btn-outline-light btn-lg" href="{% url 'milk_app:register' %}"
+                    <a class="btn btn-outline-light btn-lg special-button" href="{% url 'milk_app:register' %}"
                         role="button">register</a>
                     <h3>Log in if you're already a member</h3>
-                    <a class="btn btn-outline-light btn-lg" href="{% url 'milk_app:login' %}" role="button">log in</a>
+                    <a class="btn btn-outline-light btn-lg special-button" href="{% url 'milk_app:login' %}" role="button">log in</a>
                 </div>
             </div>
             {% endif %}
@@ -110,7 +110,7 @@ Homepage
                         <h2 class="service-text1" style="opacity: 1; transform: translateY(0px);">
                             We provide the best possible services for <b>our clients - you</b>.
                             Whether you are a <b>host</b> or a <b>tenant</b>, we've got you covered.
-                            Our primary goal is to leave <b>all</b> of you <b>satisfied</b>
+                            Our primary goal is to leave <b>all</b> of you <b>satisfied</b>.
                         </h2>
                     </div>
                 </div>
@@ -126,7 +126,7 @@ Homepage
 
 <!-- End of the team section -->
 
-<div id="#cards-with-actions">
+<div id="possible-actions">
     <!-- Home page for Hosts -->
     {% if user.userprofile.account == "Host" %}
     <div class="container-fluid container py-3 mt-4">
@@ -191,7 +191,7 @@ Homepage
                             alt="Card for browsing properties">
                         <div class="card-body">
                             <h5 class="card-title">Browse all properties</h5>
-                            <p class="card-text">You will be referenced to a page where you see all currently enlisted
+                            <p class="card-text">You will be referenced to a page where you see all the
                                 properties on the market.</p>
                         </div>
                     </div>
@@ -203,10 +203,11 @@ Homepage
                 <a href="{% url 'milk_app:my_listings' %}">
                     <div class="card mb-3 h-100">
                         <img src="{% static 'images/card3.jpg' %}" class="card-img-top"
-                            alt="Card for showing current listings">
+                            alt="Card for showing currently places that I own ">
                         <div class="card-body">
-                            <h5 class="card-title">Show my rented properties</h5>
-                            <p class="card-text">This sends you to a site where all you properties will be enlisted.</p>
+                            <h5 class="card-title">Show the properties I currently am renting</h5>
+                            <p class="card-text">This sends you to a site where all the properties 
+                                rented by you will be enlisted.</p>
                         </div>
                     </div>
                 </a>
@@ -236,6 +237,6 @@ Homepage
             </div>
         </div>
     </div>
-
+</div>
     {% endif %}
     {% endblock %}

@@ -41,14 +41,6 @@ body  {
   color: #1ebba3;
 }
 
-/*-- technologies used --- ABOUT SECTION --*/
-
-#language-used  {
-  text-align: center;
-  padding-top: 50px;
-  margin-top: -50px;
-}
-
 /*-- Created by section --*/
 
 #created-by {
@@ -76,9 +68,12 @@ section  {
   height: 100vh; 
 }
 
-
-.btn  {
+.carousel-inner .btn  {
   margin-bottom: 1vh;
+}
+
+.carousel-inner .special-button {
+  margin-top: -30px;
 }
 
 .carousel-caption {
@@ -106,7 +101,6 @@ section  {
 
 /*-- About Us Page --*/
 
-
 #beginning-about-us {
   background: url('../images/about-us1.jpg') no-repeat center center fixed; /*--- need to change to a relative path, don't know how ---*/
   -webkit-background-size: cover;
@@ -131,6 +125,12 @@ section  {
   padding-bottom: 1.6rem;
 }
 
+#language-used  {
+  text-align: center;
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
 .about-language {
   text-align: center;
 }
@@ -144,7 +144,7 @@ section  {
   font-size: 16px;
 }
 
-/*--- Contact ---*/
+/*--- Contact <---> footer ---*/
 
 footer  {
   background-color: #40474e;
@@ -197,6 +197,58 @@ footer iframe {
   padding-top: 3rem;
   text-align: center;
 }
+
+/*-- FAQ --*/
+
+#faq-section .faqHeader {
+  font-size: 27px;
+  margin: 20px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+#faq-section .card-header {
+  text-align: center;
+  color: black;
+}
+
+#faq-section .card-header a:hover {
+  text-decoration: none;
+}
+
+.panel-heading [data-toggle="collapse"]:after {
+  font-family: 'Rubik', sans-serif;
+  content: "e072";
+  /* "play" icon */
+  float: right;
+  color: #F58723;
+  font-size: 18px;
+  line-height: 22px;
+  /* rotate "play" icon from > (right arrow) to down arrow */
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.panel-heading [data-toggle="collapse"].collapsed:after {
+  /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  color: #454444;
+}
+
+#faq-section .card .card-block   {
+  text-align: center;
+  font-size: 18px;
+}
+
+/*-- DUNNO - ARTEM COMMENT IT OUT --*/
 
 #login_form {
   display: block;
