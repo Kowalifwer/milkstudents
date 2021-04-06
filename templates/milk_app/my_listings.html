@@ -12,7 +12,7 @@
 
 {% block body_block %}
 <br><br>    
-<h1 class="top-space-heading">Browse all your listings</h1>
+<h1 class="top-space-heading">Browse your listings</h1>
 
     <div class="text-center">       
             {% if profile.account == 'Host' %}
@@ -48,7 +48,10 @@
                  
             {% else %}       
                 <p> YOU HAVE NO LISTINGS</p>
+
+                {% if profile.account == 'Host' %}
                 <a href = {% url 'milk_app:add_listing' %}> Add a listing </a>
+                {% endif %}
 
             {% endif %}
             
