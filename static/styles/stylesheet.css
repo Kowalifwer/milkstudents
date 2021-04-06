@@ -102,7 +102,7 @@ section  {
 /*-- About Us Page --*/
 
 #beginning-about-us {
-  background: url('../images/about-us1.jpg') no-repeat center center fixed; /*--- need to change to a relative path, don't know how ---*/
+  background: url("{% static 'images/about-us1.jpg' %}") no-repeat center center fixed; /*--- need to change to a relative path, don't know how ---*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;

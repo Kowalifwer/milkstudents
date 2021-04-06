@@ -104,7 +104,7 @@
                     <img src="{% static 'images/logo.jpg' %}">
                     <p class="mb-4">
                         Worked on this project over the couple of last weeks in a team of mostly two people. Hopefully it
-                        helps finding you the student accomodation you want and you really deserve!</p>
+                         helps finding you the student accomodation you want and you really deserve!</p>
                 </div>
 
                 <div class="col-md-4 text-center">
@@ -171,20 +171,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <!-- SMOOTH SCROLL PLUGIN -->
+    
+    
+    <!-- I had to leave these scripts in-line, was trying to put them to the global.js but could not get it to work. All the others that did work
+            were left in the global.js file.-->
 
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-        })
-    </script>
-    <!-- Enables the tooltips everywhere -->
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
+    <!-- SMOOTH SCROLL PLUGIN -->
     <script>
         var scroll = new SmoothScroll('a[href*="#"]', {
             speed: 1500,

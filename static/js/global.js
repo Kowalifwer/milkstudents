@@ -10,13 +10,7 @@ $(document).ready(function() {
     });
 });
 
-
-var scroll = new SmoothScroll('a[href*="#"]', {
-    speed: 1500,
-    speedAsDuration: true
-});
-
-
+// Enables the tooltips everywhere
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
@@ -24,4 +18,7 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 
 $(function () {
     $('[data-toggle="popover"]').popover()
-        })
+        });
+
+
+        
