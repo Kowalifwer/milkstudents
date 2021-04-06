@@ -4,157 +4,163 @@
 <!DOCTYPE html>
 
 {% block title_block %}
-    About Milk
+About Milk
 
 {% endblock %}
 
 {% block body_block %}
 <section id="background-photo">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img class="d-block w-100" src="{% static 'images/about-us1.jpg' %}" alt="background photo for about page">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>learn more about us</h1>
-                <h3>technologies used: </h3>
-                <a class="btn btn-outline-light btn-lg" href="#language-used" role="button">see more</a>
-            </div>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'images/about-us1.jpg' %}" alt="background photo for about page">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>learn more about us</h1>
+          <h3>technologies used: </h3>
+          <a class="btn btn-outline-light btn-lg" href="#language-used" role="button">see more</a>
         </div>
+      </div>
     </div>
 </section>
 
 <section id="language-used">
-    <div class="services-section container py-7" style="opacity: 1;">
-        <div class="parallax-pad-5">
-            <div class="row mb-5">
-                <div class="col-md-10 w-50 mx-auto">
-                    <div data-parallax-offset="2" class="parallax-anim" style="transform: translateY(-28px);">
-                        <p class="service-title1 text-bold text-uppercase">
-                            How we did it
-                        </p>
-                    </div>
-                    <div data-parallax-offset="1.5" class="parallax-anim" style="transform: translateY(-36px);">
-                        <h2 class="service-text1" style="opacity: 1; transform: translateY(0px);">
-                            This app was made based on the following technologies:
-                        </h2>
-                    </div>
-                </div>
-            </div>
+  <div class="services-section container py-7" style="opacity: 1;">
+    <div class="parallax-pad-5">
+      <div class="row mb-5">
+        <div class="col-md-10 w-50 mx-auto">
+          <div data-parallax-offset="2" class="parallax-anim" style="transform: translateY(-28px);">
+            <p class="service-title1 text-bold text-uppercase">
+              How we did it
+            </p>
+          </div>
+          <div data-parallax-offset="1.5" class="parallax-anim" style="transform: translateY(-36px);">
+            <h2 class="service-text1" style="opacity: 1; transform: translateY(0px);">
+              This app was made based on the following technologies:
+            </h2>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="about-language">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="p-5">
-            <a href = "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">
-            <img class="img-fluid"  src="{% static 'images/html5.png' %}" alt="">
-            </a>
-          </div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="p-5">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">
+            <img class="img-fluid" src="{% static 'images/html5.png' %}" alt="">
+          </a>
         </div>
-        <div class="col-lg-6">
-          <div class="p-5">
-            <h2 class="display-4">HTML 5</h2>
-            <p>Even bootstrap has to be based on something. And this something is html 5 in this case. Nothing too old, nothing too new.
-                Everyone always knows what to expect from the good old HTML.
-            </p>
-          </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-5">
+          <h2 class="display-4">HTML 5</h2>
+          <p>Even bootstrap has to be based on something. And this something is html 5 in this case. Nothing too old,
+            nothing too new.
+            Everyone always knows what to expect from the good old HTML.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about-language">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="p-5">
-            <a href = "https://blog.getbootstrap.com/2018/12/21/bootstrap-4-2-1/">
-            <img class="img-fluid"  src="{% static 'images/bootstrap-logo.png' %}" alt="">
-            </a>
-          </div>
+<section class="about-language">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-2">
+        <div class="p-5">
+          <a href="https://blog.getbootstrap.com/2018/12/21/bootstrap-4-2-1/">
+            <img class="img-fluid" src="{% static 'images/bootstrap-logo.png' %}" alt="">
+          </a>
         </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <h2 class="display-4">Bootstrap 4</h2>
-            <p>Bootstrap is responsible for all the responsiveness and adjusting of the web application you can see. Almost everything was done in bootstrap, including 
-                image resizing, scrolling functions, nav-bar, etc.
-            </p>
-          </div>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+          <h2 class="display-4">Bootstrap 4</h2>
+          <p>Bootstrap is responsible for all the responsiveness and adjusting of the web application you can see.
+            Almost everything was done in bootstrap, including
+            image resizing, scrolling functions, nav-bar, etc.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about-language">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="p-5">
-            <a href = "https://developer.mozilla.org/en-US/docs/Web/CSS">
-            <img class="img-fluid"  src="{% static 'images/css-logo.jpg' %}" alt="">
-            </a>
-          </div>
+<section class="about-language">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="p-5">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+            <img class="img-fluid" src="{% static 'images/css-logo.jpg' %}" alt="">
+          </a>
         </div>
-        <div class="col-lg-6">
-          <div class="p-5">
-            <h2 class="display-4">CSS 3</h2>
-            <p>All the styling was made in the css template that is attached to all the .html files. One style to rule them all, 
-                one style to find them, one style to bring them all, and in the darkness bind them. *what's up reference*</p>
-          </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-5">
+          <h2 class="display-4">CSS 3</h2>
+          <p>All the styling was made in the css template that is attached to all the .html files. One style to rule
+            them all,
+            one style to find them, one style to bring them all, and in the darkness bind them. *what's up reference*
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about-language">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="p-5">
-            <a href = "https://www.djangoproject.com/">
-            <img class="img-fluid"  src="{% static 'images/django-logo.png' %}" alt="">
-            </a>
-          </div>
+<section class="about-language">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 order-lg-2">
+        <div class="p-5">
+          <a href="https://www.djangoproject.com/">
+            <img class="img-fluid" src="{% static 'images/django-logo.png' %}" alt="">
+          </a>
         </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <h2 class="display-4">Django</h2>
-            <p>The whole back-end was built on a python extension - django. Django is know for it's following of 
-              model-template-views architecture. It's main potential is to ease creation of complex, database-driven websites, such
-              as this one. 
-            </p>
-          </div>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+          <h2 class="display-4">Django</h2>
+          <p>The whole back-end was built on a python extension - django. Django is know for it's following of
+            model-template-views architecture. It's main potential is to ease creation of complex, database-driven
+            websites, such
+            as this one.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about-language">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="p-5">
-            <a href = "https://www.javascript.com">
-            <img class="img-fluid"  src="{% static 'images/js-logo.png' %}" alt="">
-            </a>
-          </div>
+<section class="about-language">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="p-5">
+          <a href="https://www.javascript.com">
+            <img class="img-fluid" src="{% static 'images/js-logo.png' %}" alt="">
+          </a>
         </div>
-        <div class="col-lg-6">
-          <div class="p-5">
-            <h2 class="display-4">JavaScript</h2>
-            <p>JavaScript is another one of the core technologies used for creating websites. It enables interactivity on web pages, 
-              therefore is one of the essential parts of the web applications. It was used on this page for many plug-ins, for example 
-              Smooth Scrolling that enables the button referencing to the another section of the page to scroll smoothly, rather than just jumping to it. 
-            </p>
-          </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-5">
+          <h2 class="display-4">JavaScript</h2>
+          <p>JavaScript is another one of the core technologies used for creating websites. It enables interactivity on
+            web pages,
+            therefore is one of the essential parts of the web applications. It was used on this page for many plug-ins,
+            for example
+            Smooth Scrolling that enables the button referencing to the another section of the page to scroll smoothly,
+            rather than just jumping to it.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 {% endblock %}
-
-
