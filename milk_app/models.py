@@ -58,10 +58,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-
-
-
-
 def generate_filename_listing(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4().hex, ext)

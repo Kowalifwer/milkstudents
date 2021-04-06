@@ -47,8 +47,12 @@
                     <li class="nav-item">
                         <!-- About page reference-->
                         <a class="nav-link" href="{% url 'milk_app:about' %}">ABOUT US</a><!-- about page -->
-
+                    </li>
+                    
                         <!-- if the user is already logged in he can either view his profile or log out of his account -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'milk_app:FAQ' %}">FAQ</a>
+                    </li>    
                         {% if user.is_authenticated %}
                     <li class="nav-item">
                         <!-- Logout if user authenticated reference-->

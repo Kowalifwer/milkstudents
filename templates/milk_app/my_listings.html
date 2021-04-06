@@ -20,13 +20,24 @@
             {% elif profile.account == 'Tenant' %}
                 <p>All the listings that you are currently renting:</p>
             {% endif %}
-        <div>
-            
+
+
             {% if my_listings %} 
-                
-                {% for l in my_listings  %}
-                    <li><strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }}</a></strong></li>
-                {% endfor %}
+
+            <div class="row">
+            {% for l in my_listings  %}
+            
+                <div class="col-sm-6">
+                  <div class="card">
+                    <img src="/media/{{l.picture}}" href="{% url 'milk_app:show_listing' l.slug %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">{{ l.name }}</p>
+                    </div>  
+                  </div>
+                </div>
+            {% endfor %}
+            </div>
+                    
                  
             {% else %}       
                 <p> YOU HAVE NO LISTINGS</p>
@@ -35,7 +46,7 @@
             {% endif %}
             
             
-        </div>
+        
     </div>
     
 {% endblock %}
