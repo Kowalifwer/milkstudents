@@ -102,7 +102,7 @@ section  {
 /*-- About Us Page --*/
 
 #beginning-about-us {
-  background: url("{% static 'images/about-us1.jpg' %}") no-repeat center center fixed; /*--- need to change to a relative path, don't know how ---*/
+  background: url("{% static 'images/about-us1.jpg' %}") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -248,7 +248,34 @@ footer iframe {
   font-size: 18px;
 }
 
-/*-- DUNNO - ARTEM COMMENT IT OUT --*/
+/*-- profile page --*/
+.heading  {
+  font-family: 'Rubik', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.profile-section h1 {
+  font-size: 2rem;
+  letter-spacing: .15rem;
+  text-shadow: .1rem .1rem .8rem black;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.profile-section h3 {
+  font-size: 1rem;
+  text-shadow: .1rem .1rem .5rem black;
+  text-align: center;
+}
+
+.h-text {
+  font-size: 2rem;
+  text-shadow: .1rem .1rem .5rem black;
+  text-align: center;
+  font-weight: 700;
+}
 
 #login_form {
   display: block;

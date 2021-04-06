@@ -48,12 +48,12 @@
                         <!-- About page reference-->
                         <a class="nav-link" href="{% url 'milk_app:about' %}">ABOUT US</a><!-- about page -->
                     </li>
-                    
-                        <!-- if the user is already logged in he can either view his profile or log out of his account -->
+
+                    <!-- if the user is already logged in he can either view his profile or log out of his account -->
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'milk_app:FAQ' %}">FAQ</a>
-                    </li>    
-                        {% if user.is_authenticated %}
+                    </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <!-- Logout if user authenticated reference-->
                         <a class="nav-link" href="{% url 'milk_app:logout' %}">Log out</a>
@@ -79,9 +79,9 @@
                     <li class="nav-item">
                         {% for message in messages %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-                        <a class="nav-link" id = "status" href="#">{{ message }}</a>
-                        <script> 
-                            setTimeout(()=>{document.getElementById("status").remove()}, 4000)
+                        <a class="nav-link" id="status" href="#">{{ message }}</a>
+                        <script>
+                            setTimeout(() => { document.getElementById("status").remove() }, 4000)
                         </script>
                         {% endfor %}
 
@@ -102,8 +102,9 @@
                 <div class="col-md-4 text-center my-auto">
                     <img src="{% static 'images/logo.jpg' %}">
                     <p class="mb-4">
-                        Worked on this project over the couple of last weeks in a team of mostly two people. Hopefully it
-                         helps finding you the student accomodation you want and you really deserve!</p>
+                        Worked on this project over the couple of last weeks in a team of mostly two people. Hopefully
+                        it
+                        helps finding you the student accomodation you want and you really deserve!</p>
                 </div>
 
                 <div class="col-md-4 text-center">
@@ -170,8 +171,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    
-    
+
+
     <!-- I had to leave these scripts in-line, was trying to put them to the global.js but could not get it to work. All the others that did work
             were left in the global.js file.-->
 

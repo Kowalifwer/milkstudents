@@ -4,46 +4,47 @@
 
 <!DOCTYPE html>
 
-
 {% block title_block %}
-    user.username 's  profile
-
+user.username 's profile
 {% endblock %}
 
 {% block body_block %}
-
 <!-- https://bootstrapious.com/p/bootstrap-profile-page -->
-<br><br><br>
-<div class="row py-5 px-2">
-    <div class="col-xl-10 col-md-6 col-sm-10 mx-auto">
+<div class="container-auto">
+    <div class="row py-5 px-12 profile-section">
+        <div class="col-12">
 
-        <!-- Profile widget -->
-        <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 bg-dark">
-                <div class="media align-items-end profile-header">
-                    <div class="profile mr-4"> 
-                    {% if user.userprofile.picture %}
-                        <img src="/media/{{user.userprofile.picture}}" alt="No profile picture" width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-light btn-sm btn-block" id = "formButton">Edit profile</a></div>
-                    {% else %}
-                        <img src="{% static 'images/empty_profile.png' %}" alt="No profile picture" width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-light btn-sm btn-block" id = "formButton">Edit profile</a></div>
-                    {% endif %}
+            <!-- Profile widget -->
+            <div class="bg-white shadow overflow-hidden">
+                <div class="px-4 pt-0 pb-4 bg-dark">
+                    <div class="media align-items-end profile-header">
+                        <div class="profile mr-4">
+                            {% if user.userprofile.picture %}
+                            <img src="/media/{{user.userprofile.picture}}" alt="No profile picture" width="130"
+                                class="rounded mb-2 img-thumbnail"><a href="#"
+                                class="btn btn-outline-light btn-sm btn-block" id="formButton">Edit profile</a>
+                        </div>
+                            {% else %}
+                        <img src="{% static 'images/empty_profile.png' %}" alt="No profile picture" width="130"
+                            class="rounded mb-2 img-thumbnail"><a href="#"
+                            class="btn btn-outline-light btn-sm btn-block" id="formButton">Edit profile</a>
+                    </div>
+                            {% endif %}
                     <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0">Greetings {{user.username}}</h4>
-                        <p class="small mb-2"> E-mail: {{user.email}}</p>
-                        <p class="small mb-2"> Role: {{user.userprofile.account}}</p>
-                        
+                        <h1 class="mt-0 mb-0"><span h-text>Greetings {{user.username}}</span></h1>
+                        <h3 class="small mb-2"><span h-text>E-mail: {{user.email}}</span></h3>
+                        <h3 class="small mb-2"> <span h-text>Role: {{user.userprofile.account}}</span></h3>
                     </div>
                 </div>
             </div>
 
             <div class="bg-light p-4 d-flex justify-content-center text-center">
-                <form style="display: none;" id = "update_form" method='POST' enctype="multipart/form-data" action="{% url 'milk_app:profile' %}">
-            
+                <form style="display: none;" id="update_form" method='POST' enctype="multipart/form-data"
+                    action="{% url 'milk_app:profile' %}">
                     {%csrf_token%}
                     {{u_form|crispy}}
                     {{p_form|crispy}}
-                    
-                    <button class = "btn btn-outline-dark btn-lg" type='submit' name = 'submit'>Make changes!</button>
+                    <button class="btn btn-outline-dark btn-lg" type='submit' name='submit'>Make changes!</button>
                 </form>
             </div>
 
@@ -51,24 +52,26 @@
             {% if user.userprofile.account == 'Host' %}
             <div class="py-4 px-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <a href="{% url 'milk_app:my_listings' %}" class="mb-0">Browse Your Listings</a>
-                    <a href="{% url 'milk_app:browse_listings' %}" class="mb-0">View all available listings</a>
-                    <a href="{% url 'milk_app:add_listing' %}" class="mb-0">Add a listing</a>
+                    <a href="{% url 'milk_app:my_listings' %}" class="mb-0 heading">Browse Your Listings</a>
+                    <a href="{% url 'milk_app:browse_listings' %}" class="mb-0 heading">View all available listings</a>
+                    <a href="{% url 'milk_app:add_listing' %}" class="mb-0 heading">Add a listing</a>
                 </div>
             </div>
+
             <!-- TENANT VIEW -->
-            {% else%}
+            {% else %}
             <div class="py-4 px-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <a href="{% url 'milk_app:my_listings' %}" class="mb-0">Browse Listings that you are currently renting</a>
-                    <a href="{% url 'milk_app:browse_listings' %}" class="mb-0">Browse all available listings</a>
+                    <a href="{% url 'milk_app:my_listings' %}" class="mb-0 heading">Browse Listings that you are
+                        currently
+                        renting</a>
+                    <a href="{% url 'milk_app:browse_listings' %}" class="mb-0 heading">Browse all available
+                        listings</a>
                 </div>
             </div>
             {% endif %}
-                
         </div>
-    
-    
+    </div>
+</div>
+
 {% endblock %}
-
-
