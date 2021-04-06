@@ -2,7 +2,12 @@ $(document).ready(function() {
     $("#formButton").click(function() {
         $("#update_form").toggle();
     });
+});
 
+$(document).ready(function() {
+    $("#formButton2").click(function() {
+        $("#update_form2").toggle();
+    });
 });
 
 

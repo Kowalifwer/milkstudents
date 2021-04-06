@@ -25,17 +25,26 @@
         {% if listings %}
                     
             
+        <div class="row">
             {% for l in listings  %}
-                <li>
-                    <strong><a href="{% url 'milk_app:show_listing' l.slug %}">{{ l.name }} - </a> {{l.university}} 
+            
+                <div class="col-sm-6">
+                <a href = "{% url 'milk_app:show_listing' l.slug %}">
+                  <div class="card">
                     
-                    <!-- {% if l.picture %}
-                        <img src = "/media/{{l.picture}}" height = "10%" width= "10%"> Click </img>
-                    {% endif %} -->
-                        
-    
-                </strong></li>
+                    <img src="/media/{{l.picture}}" class="card-img-top" alt="...">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ l.name }}</h5>
+                
+                        <p class="card-text">Located near {{ l.university }}</p>
+                        <p class="card-text">Property rating: {{ l.ratingCurrent }} (based on {{ l.ratingCount }} reviews)</p>
+                    </div>  
+                  </div>
+                </a>
+                </div>
             {% endfor %}
+            </div>
             
     
         {% else %}       

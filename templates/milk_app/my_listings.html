@@ -28,12 +28,19 @@
             {% for l in my_listings  %}
             
                 <div class="col-sm-6">
+                <a href = "{% url 'milk_app:show_listing' l.slug %}">
                   <div class="card">
-                    <img src="/media/{{l.picture}}" href="{% url 'milk_app:show_listing' l.slug %}" class="card-img-top" alt="...">
+                    
+                    <img src="/media/{{l.picture}}" class="card-img-top" alt="...">
+                    
                     <div class="card-body">
-                        <p class="card-text">{{ l.name }}</p>
+                        <h5 class="card-title">{{ l.name }}</h5>
+                
+                        <p class="card-text">Located near {{ l.university }}</p>
+                        <p class="card-text">Property rating: {{ l.ratingCurrent }} (based on {{ l.ratingCount }} reviews)</p>
                     </div>  
                   </div>
+                </a>
                 </div>
             {% endfor %}
             </div>
